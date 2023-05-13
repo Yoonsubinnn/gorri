@@ -1,0 +1,515 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.gTitle{text-align:center; text-decoration:underline;}
+/* 	.groupCARD{width:350px; margin-left:auto; margin-right:auto; margin-top:20px; margin-bottom:20px;} */
+/* 	.groupName{font-size: 30px; font-weight:bold;} */
+/* 	.groupInt{heigt:100px;} */
+	
+	.bigGroupTable{
+		width:1000px;
+		height:1450px;
+		
+	}
+	.smGroupTable{
+		border-collapse:separate;
+		border-spacing:0;
+		margin: 20px;
+	}
+	
+	.groupPic{
+		width:300px;
+		height:300px;
+		position:relative;
+		overflow:hidden;
+		-webkit-clip-path: padding-box;
+    	clip-path: padding-box;
+	}
+	.groupTitle{
+		height:40px;
+		font-size:25px;
+		font-weight:bold;
+		text-align:left;
+		padding-left:20px;
+		padding-top:15px;
+	
+	}
+	.groupIntro{
+		height:35px;
+		font-size:15px;
+		font-weight:bold;
+		text-align:left;
+		padding-left:20px;
+		padding-top:20px;
+		
+	}
+	
+	.groupButtons{
+		height:50px;
+		font-size:10px;
+		text-align:left;
+		padding-top:20px;
+		padding-left:20px;
+	}
+	
+	.gThumnail{
+		position:absolute;
+		transform:translate(-50%, -50%);
+		max-width:100%; 
+		max-height:100%;
+		-webkit-clip-path: inherit;
+    	clip-path: inherit;
+    	width: 100%;
+   		height: 100%;
+    	object-fit: cover;
+    	border-top-left-radius:2em;
+    	border-bottom-right-radius:2em;
+	}
+
+	a.groupLink{
+		text-decoration: none; /* 밑줄 없애기 */
+  		color: black;
+	}
+	a.groupLink:hover{
+		color:#ffab00
+	}
+</style>
+</head>
+<body>
+
+<%@include file = "../common/top.jsp" %>
+		<br><br>
+		<br>
+		
+		
+		
+	<!-- 모임 검색창 + 모임 개설 버튼 -->
+		<%@include file = "../common/search.jsp" %>
+        <br>
+        <div class="gTitle">
+		<a href="${ contextPath }/groupMaking.gr"><button class="btn btn-outline-success" type="button" style="background-color:#ffab00; color:white; border:1px solid #ffab00">모임 개설</button></a>
+		</div><br>
+
+
+<%@include file = "../common/category.jsp" %>
+
+<!-- 모임 목록 입니다.  -->
+<div style="text-align:center; margin:30px; margin-left:auto; margin-right:auto;">
+<!-- 	<table class="bigGroupTable" style="border-color:white">	 -->
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic"> -->
+<!-- 							<img src="resources/assets/musical.jpg" class="gThumnail"> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<%-- 						<td class="groupTitle"><a href="${ contextPath }/groupDetailY.gr" class="groupLink">오페라의 유령</a></td> --%>
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">오페라의 유령 얘기할 사람</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic"> -->
+<!-- 							<img src="resources/assets/marvel.jpg" class="gThumnail"> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<%-- 						<td class="groupTitle"><a href="${ contextPath }/groupDetailN.gr" class="groupLink">영화를 사랑하는 모임</a></td> --%>
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">같이 영화 볼 사람 모집</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic"> -->
+<!-- 							<img src="resources/assets/knitting.jpg" class="gThumnail"> -->
+<!-- 						</td>					 -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<%-- 						<td class="groupTitle"><a href="${ contextPath }/groupDetailAdmin.gr" class="groupLink">뜨개뜨개</a></td> --%>
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">뜨개질 정보 공유</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+			
+<!-- 		</tr> -->
+		
+		
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic">thumnail</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupTitle">모임명</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">모임 한줄 소개</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic">thumnail</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupTitle">모임명</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">모임 한줄 소개</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic">thumnail</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupTitle">모임명</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">모임 한줄 소개</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+			
+<!-- 		</tr> -->
+		
+		
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic">thumnail</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupTitle">모임명</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">모임 한줄 소개</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic">thumnail</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupTitle">모임명</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">모임 한줄 소개</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupPic">thumnail</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupTitle">모임명</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td class="groupIntro">모임 한줄 소개</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 							<span>10</span> -->
+<!-- 						</td>  -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</td> -->
+			
+<!-- 		</tr> -->
+	
+	
+<!-- 	</table> -->
+   
+   
+   	<table class="GroupTable2"  style="border:2px solid #ffab00; border-radius:2em;" >
+				<tr rowspan ="3">
+					<td class="groupPic">
+						<img src="resources/assets/musical.jpg" class="gThumnail">
+					</td>
+					<td class="groupTitle"><a href="${ contextPath }/groupDetailY.gr" class="groupLink">오페라의 유령</a></td>
+				</tr>				
+				<tr>
+					<td class="groupIntro">오페라의 유령 얘기할 사람</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+						<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+						<span>10</span>
+					</td> 
+				</tr>
+	</table>
+	<table class="bigGroupTable" style="border-color:white">	
+		<tr>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">
+							<img src="resources/assets/musical.jpg" class="gThumnail">
+						</td>
+					</tr>
+					<tr>
+						<td class="groupTitle"><a href="${ contextPath }/groupDetailY.gr" class="groupLink">오페라의 유령</a></td>
+					</tr>
+					<tr>
+						<td class="groupIntro">오페라의 유령 얘기할 사람</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">
+							<img src="resources/assets/marvel.jpg" class="gThumnail">
+						</td>
+					</tr>
+					<tr>
+						<td class="groupTitle"><a href="${ contextPath }/groupDetailN.gr" class="groupLink">영화를 사랑하는 모임</a></td>
+					</tr>
+					<tr>
+						<td class="groupIntro">같이 영화 볼 사람 모집</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">
+							<img src="resources/assets/knitting.jpg" class="gThumnail">
+						</td>					
+					</tr>
+					<tr>
+						<td class="groupTitle"><a href="${ contextPath }/groupDetailAdmin.gr" class="groupLink">뜨개뜨개</a></td>
+					</tr>
+					<tr>
+						<td class="groupIntro">뜨개질 정보 공유</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			
+		</tr>
+		
+		
+		<tr>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">thumnail</td>
+					</tr>
+					<tr>
+						<td class="groupTitle">모임명</td>
+					</tr>
+					<tr>
+						<td class="groupIntro">모임 한줄 소개</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">thumnail</td>
+					</tr>
+					<tr>
+						<td class="groupTitle">모임명</td>
+					</tr>
+					<tr>
+						<td class="groupIntro">모임 한줄 소개</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">thumnail</td>
+					</tr>
+					<tr>
+						<td class="groupTitle">모임명</td>
+					</tr>
+					<tr>
+						<td class="groupIntro">모임 한줄 소개</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			
+		</tr>
+		
+		
+		<tr>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">thumnail</td>
+					</tr>
+					<tr>
+						<td class="groupTitle">모임명</td>
+					</tr>
+					<tr>
+						<td class="groupIntro">모임 한줄 소개</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">thumnail</td>
+					</tr>
+					<tr>
+						<td class="groupTitle">모임명</td>
+					</tr>
+					<tr>
+						<td class="groupIntro">모임 한줄 소개</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+					<tr>
+						<td class="groupPic">thumnail</td>
+					</tr>
+					<tr>
+						<td class="groupTitle">모임명</td>
+					</tr>
+					<tr>
+						<td class="groupIntro">모임 한줄 소개</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+							<span>10</span>
+						</td> 
+					</tr>
+				</table>
+			</td>
+			
+		</tr>
+	
+	
+	</table>
+   
+ 
+ </div>
+<%@include file = "../common/footer.jsp" %>
+</body>
+</html>

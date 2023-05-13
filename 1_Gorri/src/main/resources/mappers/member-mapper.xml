@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	
+	<select id="login" resultMap="memberResultSet">
+		select *
+		from USERS
+		where users_id=#{userId} and pwd=#{userPwd} and status='Y'  
+	</select>
+	<resultMap type="com.kh.gorri.member.model.vo.Member" id="memberResultSet">
+		<id column="ID" property="id"/>
+		<result column="USERS_ID" property="userId"/>
+		<result column="PWD" property="userPwd"/>
+		<result column="PWD_Q" property="pwdQ"/>
+		<result column="PWD_HINT" property="pwdHint"/>
+		<result column="NAME" property="userName"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="WALLET" property="wallet"/>
+		<result column="ENROLLDATE" property="enrollDate"/>
+		<result column="PHONE" property="phone"/>
+		<result column="NICKNAME" property="nickName"/>
+		<result column="MYINTRO" property="myIntro"/>
+		<result column="STATUS" property="status"/>
+		<result column="IS_ADMIN" property="isAdmin"/>		
+	</resultMap>
+	<select id="findPwd" resultType="_int">
+		select count(*)
+		from users
+		where users_id=#{userId} and pwd_q=#{pwdQ} and pwd_hint=#{pwdHint}		
+	</select>
+	
+	<update id="changePwd">
+		update users set pwd=#{userPwd} where users_id=#{userId}
+	
+	</update>
+</mapper>
