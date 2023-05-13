@@ -50,9 +50,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	//보서) 아이디 찾기 구현 2023.05.12
-//	@Override
-//	public ArrayList<Member> findId(Member m) {
-//		return mDAO.findId(sqlSession, m);
-//	}
+	@Override
+	public String findId(Member m) {
+		return mDAO.findId(sqlSession, m);
+	}
 	
 }

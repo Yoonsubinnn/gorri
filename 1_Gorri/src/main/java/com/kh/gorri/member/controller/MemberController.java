@@ -104,11 +104,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping("findIdResult.me")
-	public String findIdResult(@ModelAttribute Member m, Model model) {
-//		
-//		Member user = mService.findId(m);
-//		System.out.println(user.getUserId());
-		return null; //뷰 이름 다시 해주기 join 도 ;
+	   public String findIdResult(@ModelAttribute Member m, Model model) {
+	   
+	    String user = mService.findId(m);
+		System.out.println(user);
+		if(user != null){
+	      if(!user.isEmpty()) {
+	         model.addAttribute("userName", m.getUserName());
+	         model.addAttribute("userId", user);
+	         return "findIdResult";
+	      } else {
+	         return "findIdResultFail";
+	      }
+	      }else{
+	        return "findIdResultFail";
+	   }
 	}
 	
 	

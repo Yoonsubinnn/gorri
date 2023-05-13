@@ -16,5 +16,5 @@ public interface MemberService {
 
 	int checkNick(String nickName);
 
-//	ArrayList<Member> findId(Member m);
+	String findId(Member m);
 }

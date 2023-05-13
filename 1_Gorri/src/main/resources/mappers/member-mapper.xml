@@ -54,9 +54,9 @@
 	</select>
 	
 	<!-- 보서) 아이디 찾기 구현 : 2023-05-12 -->
-	<select id="findId" resultMap ="memberResultSet">
-		select *
+	<select id="findId" resultType ="java.lang.String">
+		select users_id
 		from users
-		where name= '#{userName}' and phone=#{phone}
+		where name=#{userName} and phone=#{phone}
 	</select>
 </mapper>
