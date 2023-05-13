@@ -23,6 +23,7 @@
     		color:grey;
     	}
     </style>
+     <script src="https://code.jquery.com/jquery-3.6.1.min.js" type="text/javascript"></script>
   </head>
 
   <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
@@ -35,8 +36,8 @@
 		</div>
 		<div class="card-body">
        	
-       	<span class="font-name">박보배</span>님의 아이디는<br>
-       	<span>user01</span>입니다<br><br>
+       	<span class="font-name">${ userName }</span>님의 아이디는<br>
+       	<span>${ userId }</span>입니다<br><br>
        	<a href="${ contextPath }/login.me">
         	<button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="button">로 그 인 하 기</button>
       	</a><br>

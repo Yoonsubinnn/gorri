@@ -1,5 +1,7 @@
 package com.kh.gorri.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -36,9 +38,9 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.checkNick", nickName);
 	}
 
-//	public ArrayList<Member> findId(SqlSessionTemplate sqlSession, Member m) {
-//		return sqlSession.selectList("memberMapper.findId", m);
-//	}
+	public String findId(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.findId", m);
+	}
 	
 
 }
