@@ -131,4 +131,18 @@
 		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
 
+	<!-- 마켓 -->
+	<servlet>
+		<servlet-name>marketServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>WEB-INF\spring\appServlet\market-context.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>marketServlet</servlet-name>
+		<url-pattern>*.market</url-pattern>
+	</servlet-mapping>
+
 </web-app>
