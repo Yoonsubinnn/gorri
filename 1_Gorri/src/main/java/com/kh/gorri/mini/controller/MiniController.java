@@ -1,19 +1,16 @@
 package com.kh.gorri.mini.controller;
 
-import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
+import com.kh.gorri.board.model.vo.Board;
 import com.kh.gorri.member.model.vo.Member;
 import com.kh.gorri.mini.model.exception.MiniException;
 import com.kh.gorri.mini.model.service.MiniService;
@@ -25,7 +22,15 @@ public class MiniController {
 	private MiniService mmService;
 	
 	@RequestMapping("miniMain.mi")
-	public String miniMain() {
+	public String miniMain(Model model, HttpServletRequest request) {
+		
+	// 내가 쓴 글 목록들을 가져와야 함 (이미지와 글제목 필요..)
+		Member m = (Member) request.getSession().getAttribute("loginUser");
+		List<Board> list = mmService.boardList(m);
+		System.out.println(list);
+		
+		model.addAttribute("list", list);
+		
 		return "miniMain";
 	}
 	
