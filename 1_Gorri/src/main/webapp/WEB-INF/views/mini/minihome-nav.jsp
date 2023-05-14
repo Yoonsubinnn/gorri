@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,7 +131,6 @@
 	#edit-img{width: 130px; height:130px; /* 프로필 이미지 */
 		margin-left:auto; margin-right:auto;;
 		border-radius: 50%;
-		background-image: url('assets/no-img.png');
 		background-repeat: no-repeat;
     	background-position: center;
     	background-size : 130px, 130px;
@@ -156,7 +156,10 @@
 		<div id="profile-back"></div>
 		<div id="profile-white"></div>
 		<div id="profile">
-			<img id="profile-img" src="${contextPath }/resources/assets/no-img.png">
+			
+				<img id="profile-img" src="${contextPath }/resources/assets/no-img.png">
+			
+			
 		</div>
 	</div>
 	
@@ -168,11 +171,11 @@
 		<div class="minihome">
 			<div class="mid-width">
 				<div class="mid-info">
-					<div id="id">닉네임</div>
+					<div id="id">${ loginUser.userId }</div>
 					<div><i class="bi bi-gear-fill" id="edit-icon" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
 				</div>
 				<div> <!-- 칸 안늘어나게 하기위해서 크기 미리 정해놔야 할듯 -->
-					<div>자기소개글이 여기에 출력됩니다~ 자기소개글을 올려보세요 내 이름은 최정흠 입니다. 최대 몇글자인지 정해놔야 할듯! 칸 고정? 아님 쓰는데로 늘어나게??</div>
+					<div>${ loginUser.myIntro }</div>
 				</div> 
 			</div>
 		</div>
@@ -202,11 +205,12 @@
 	        <h5 class="modal-title" id="exampleModalLabel">프로필 수정</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
-		    <div class="modal-body">
+	      <form action="updateIntro.mi" method="POST">
+	      	  <div class="modal-body">
 		    	<table class="edit">
 		    		<tr>
 		    			<td>
-		    				<div id="edit-img">
+		    				<div id="edit-img" style="background-image:url('${contextPath }/resources/assets/no-img.png')">
 		    					<label class="input-file-button" for="input-file"><i class="bi bi-camera-fill"></i></label>
 		    					<input class="form-con" type="file" id="input-file">
 							</div>
@@ -214,19 +218,30 @@
 		    		</tr>
 		    		<tr>
 		    			<td>
-		    				<textarea class="edit-text" style="resize: none;" placeholder="자기소개를 입력해주세요."></textarea>
+		    				<textarea name="myIntro" id="myIntro" class="edit-text" style="resize: none;" <c:if test="${ empty loginUser.myIntro }">placeholder="자기소개를 입력해주세요."</c:if>><c:if test="${ !empty loginUser.myIntro }">${ loginUser.myIntro }</c:if></textarea>
 		    			</td>
 		    		</tr>
 		    	</table>
 			</div>
 	      <div class="footer">
-	        <button type="button" class="button" data-bs-dismiss="modal">취소</button>
-	        <button type="button" class="button">저장</button>
+	        <button type="button" class="button" id="cancel-bnt" data-bs-dismiss="modal">취소</button>
+	        <button type="submit" class="button" id="submit-btn">저장</button>
 	      </div>
+	      </form>
+		  
 	    </div>
 	  </div>
 	</div>
 	
+<script>
+window.onload =()=>{
+	document.getElementById('myIntro').addEventListener('click',()=>{
+		document.getElementById('myIntro').value = '';
+	})
 	
+}
+	
+	
+</script>
 </body>
 </html>

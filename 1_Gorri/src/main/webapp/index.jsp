@@ -16,7 +16,7 @@
 
 		<main class="px-3">
 			<a href="${ pageContext.servletContext.contextPath }/main.do">
-				<img src="resources/assets/logoMoving.gif">안녕~!!!! 수정
+				<img src="resources/assets/logoMoving.gif">
 			</a>
 		</main>
 

@@ -119,9 +119,43 @@
 	
 	<%@ include file="../common/footer.jsp" %>
 	
+	<!-- Modal --> <!-- 프로필 수정 버튼 클릭하면 뜨는 프로필 수정페이지 -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">프로필 수정</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <form action="updateIntro.mi" method="POST">
+	      	  <div class="modal-body">
+		    	<table class="edit">
+		    		<tr>
+		    			<td>	
+		    				회원만 이용 가능합니다.
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<td>
+		    				
+		    			</td>
+		    		</tr>
+		    	</table>
+			</div>
+	      <div class="footer">
+	        <button type="button" class="button" data-bs-dismiss="modal">로그인</button>
+	        <button type="submit" class="button" id="submit-btn">회원가입</button>
+	      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+
 
 <script>
-
+	window.onload('load', ()=>{
+		$('#exampleModal').modal('show');
+	})
 </script>
 </body>
 </html>
