@@ -56,7 +56,7 @@
       <a class="p-2 link-secondary text-decoration-none a" href="${ contextPath }/miniMain.mi">미니홈</a>
       <a class="p-2 link-secondary text-decoration-none a" href="${ contextPath }/hobbyMain.hb">취미</a>
       <a class="p-2 link-secondary text-decoration-none a" href="${ contextPath }/groupMain.gr">모임</a>
-      <a class="p-2 link-secondary text-decoration-none a" href="#">마켓</a>
+      <a class="p-2 link-secondary text-decoration-none a" href="${ contextPath }/MainPage.market">마켓</a>
       <a class="p-2 link-secondary text-decoration-none a" href="#">공지</a>
       <div> </div>
     </nav>
