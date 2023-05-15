@@ -97,7 +97,7 @@
 
 <%@include file = "../common/categoryGroup.jsp" %>
 
-<!-- 모임 목록 입니다.  -->
+<!-- 모임 목록 입니다.  --> 하기싫어
 <div align="center" style="margin:30px; margin-left:auto; margin-right:auto;">
    	
    	
