@@ -97,23 +97,29 @@
 
 <!-- 모임 목록 입니다.  -->
 <div align="center" style="margin:30px; margin-left:auto; margin-right:auto;">
-   	<table class="groupTable2"  style="border:2px solid #ffab00; border-radius:2em;" >
-				<tr>
-					<td class="groupPic" rowspan ="3">
-						<img src="resources/assets/musical.jpg" class="gThumnail">
-					</td>
-					<td class="groupTitle"><a href="${ contextPath }/groupDetailY.gr" class="groupLink">오페라의 유령</a></td>
-				</tr>				
-				<tr>
-					<td class="groupIntro">오페라의 유령 얘기할 사람</td>
-				</tr>
-				<tr>
-					<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-						<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-						<span>10</span>
-					</td> 
-				</tr>
-	</table> 
+	<div onclick="detailGroup()">
+		<form action="${ contextPath }/groupDetailY.gr" method="get">
+		<input type="hidden" id="groupNo" name="membershipNo" value="1">
+		   	<table class="groupTable2"  style="border:2px solid #ffab00; border-radius:2em;" >
+						<tr>
+							<td class="groupPic" rowspan ="3">
+								<img src="resources/assets/musical.jpg" class="gThumnail">
+							</td>
+							<td class="groupTitle"><a href="${ contextPath }/groupDetailY.gr" class="groupLink">오페라의 유령</a></td>
+						</tr>				
+						<tr>
+							<td class="groupIntro">오페라의 유령 얘기할 사람</td>
+						</tr>
+						<tr>
+							<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+								<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+								<span>10</span>
+							</td> 
+						</tr>
+			</table>
+		</form>
+	</div>	
+	<div>
    	<table class="groupTable2"  style="border:2px solid #ffab00; border-radius:2em;" >
 				<tr>
 					<td class="groupPic" rowspan ="3">
@@ -182,7 +188,16 @@
 					</td> 
 				</tr>
 	</table> 
+	</div>
  </div>
 <%@include file = "../common/footer.jsp" %>
+
+
+<!-- 모임으로 이동 -->
+<script>
+	detailGroup = () => {
+		
+	}
+</script>
 </body>
 </html>
