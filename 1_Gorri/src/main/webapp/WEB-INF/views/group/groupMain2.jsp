@@ -179,7 +179,7 @@
 					<td class="groupTitle"><a href="${ contextPath }/groupDetailY.gr" class="groupLink">오페라의 유령</a></td>
 				</tr>				
 				<tr>
-					<td class="groupIntro">오페라의 유령 얘기할 사람</td>
+					<td class="groupIntro">오페라의 유령 얘기할 사람sd</td>
 				</tr>
 				<tr>
 					<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
