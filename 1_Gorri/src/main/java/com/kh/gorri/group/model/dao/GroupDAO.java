@@ -1,6 +1,7 @@
 package com.kh.gorri.group.model.dao;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -38,6 +39,19 @@ public class GroupDAO {
 	
 	public ArrayList<Attachment> selectAttmGroupList(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("groupMapper.selectAttmGroupList");
+	}
+
+	public ArrayList<Group> searchGroupList(SqlSessionTemplate sqlSession, Properties search) {
+		String searchCate = search.getProperty("searchCate");
+		String searchWord = search.getProperty("searchWord");
+		
+		if(searchCate == "모임장") {
+			return (ArrayList)sqlSession.selectList("groupMapper.searchGroupByHost", searchWord);			
+		} else if(searchCate == "모임명"){
+			return (ArrayList)sqlSession.selectList("groupMapper.searchGroupByName", searchWord);	
+		} else {
+			return (ArrayList)sqlSession.selectList("groupMapper.searchGroup", searchWord);
+		}
 	}
 
 }

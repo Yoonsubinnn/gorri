@@ -1,6 +1,7 @@
 package com.kh.gorri.group.model.service;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.group.model.vo.Attachment;
@@ -20,6 +21,8 @@ public interface GroupService {
 	ArrayList<Group> selectGroupList(PageInfo pi);
 
 	ArrayList<Attachment> selectAttmGroupList();
+
+	ArrayList<Group> searchGroup(Properties search);
 
 
 	

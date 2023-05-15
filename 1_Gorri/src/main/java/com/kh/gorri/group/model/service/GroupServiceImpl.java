@@ -1,6 +1,7 @@
 package com.kh.gorri.group.model.service;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,11 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public ArrayList<Attachment> selectAttmGroupList() {
 		return gDAO.selectAttmGroupList(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Group> searchGroup(Properties search) {
+		return gDAO.searchGroupList(sqlSession, search);
 	}
 
 	

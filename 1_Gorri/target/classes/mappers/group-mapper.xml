@@ -53,4 +53,30 @@
 		<result column="ATTMLEVEL" property="attmLevel"/>
 		<result column="USERS_ID" property="userId"/>		
 	</resultMap>
+	
+	
+	<select id="searchGroupByHost" resultMap="groupResultSet">
+		select *
+		from membership
+			 join member using(membership_no)
+		where users_id like '%${searchWord}%' and grade = '모임장'
+		order by membership_no desc
+	</select>
+	
+	<select id="searchGroupByName" resultMap="groupResultSet">
+		select *
+		from membership		
+		where membership_name like '%${searchWord}%'
+		order by membership_no desc	
+	</select>
+	
+	<select id="searchGroup" resultMap="groupResultSet">
+		select *
+		from membership
+			 join member using(membership_no)
+		where membership_name like '%${searchWord}%' or	(users_id like '%${searchWord}%' and grade ='모임장')
+		order by membership_no desc
+	</select>
+	
+	
 </mapper>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -62,7 +63,8 @@ public class GroupController {
 	}
 	
 	@RequestMapping(value="groupDetailN.gr")
-	public String groupDetailN() {
+	public String groupDetailN(@RequestParam("membershipNo") int membershipNo, Model model) {
+		System.out.println(membershipNo);
 		return "group_nJoin"; 
 	}
 	
@@ -157,6 +159,8 @@ public class GroupController {
 	
 	}
 	
+	
+	// 카테고리 검색
 	@RequestMapping("selectCate.gr")
 	public String selectCate(@RequestParam(value="page", required=false) Integer page,
 							 @RequestParam("category") String category, Model model) {
@@ -183,5 +187,42 @@ public class GroupController {
 		
 		
 		return "groupCateSelect";
+	}
+	
+	
+	
+	// 그룹 검색
+	@RequestMapping("searchGroup.gr")
+	public String searchGroup(@RequestParam("searchCate") String searchCate, 
+							  @RequestParam("searchWord") String searchWord,
+							  @RequestParam(value="page", required=false) Integer page,
+							  Model model) {
+		
+		Properties search = new Properties();
+		search.put("searchCate", searchCate);
+		search.put("searchWord", searchWord);
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = gService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 9);
+		
+		ArrayList<Group> searchGroupList = gService.searchGroup(search);
+		ArrayList<Attachment> gAttm = gService.selectAttmGroupList();
+		if(searchGroupList != null) {
+			model.addAttribute("pi", pi);
+			model.addAttribute("gList", searchGroupList);
+			model.addAttribute("gAttm", gAttm);
+			
+		} else {
+			throw new GroupException("모임 조회를 실패했습니다.");
+		}
+		
+		
+		
+		return "groupMain2";
 	}
 }
