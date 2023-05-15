@@ -23,7 +23,6 @@
 		<result column="STATUS" property="status"/>
 		<result column="IS_ADMIN" property="isAdmin"/>		
 	</resultMap>
-	
 	<select id="findPwd" resultType="_int">
 		select count(*)
 		from users
@@ -32,6 +31,7 @@
 	
 	<update id="changePwd">
 		update users set pwd=#{userPwd} where users_id=#{userId}
+	
 	</update>
 	
 	<!-- 보서)회원가입 구현 : 2023-05-12 -->
@@ -60,3 +60,5 @@
 		where name=#{userName} and phone=#{phone}
 	</select>
 </mapper>
+	
+	

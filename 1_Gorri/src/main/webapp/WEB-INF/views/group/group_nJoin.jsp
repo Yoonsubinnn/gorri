@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,14 +57,14 @@
 }
 
 </style>
+<script src="../js/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
 <%@include file="../common/top.jsp" %>
 <br><br><br><h3 style="text-align:center"><b>모임명</b></h3>
 <hr style="border:solid 10px black; margin:auto; width:30%; border-width:2px;"> <!-- 모임명 중앙 선 -->
-<br><h6 style="text-align:center">모임 한 줄 소개 여기에 표시</h6>
-<br><br>
+<br><br><br>
 
 	<table width="60%" style="margin-top:200px; margin:auto; text-align:center; "> <!--테이블 전체 크기와 중앙 정렬 -->
 	    <tr>
@@ -74,7 +75,7 @@
 	        			<br>
 	        		<div>
 	        			<p>
-	        			멤버(15)
+	        			멤버()
 	        				<div id="like"; style="margin:0 auto; width:25px; height:25px;"><img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer; display:block;">
 	        				<p id="count">230</p>
 	        				</div> <!-- 좋아요 버튼 -->

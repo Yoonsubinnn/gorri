@@ -56,12 +56,12 @@ public class MemberController {
 	
 
 	//회원가입 : 보서 - 2023-05-12 23:08분 ----------------------------
-	@RequestMapping("insertMember.me")
+	@RequestMapping("join.me")
 	public String insertMember() {
 		return "join";
 	}
 	
-	@RequestMapping("join.me")
+	@RequestMapping("insertMember.me")
 	public String Join(@ModelAttribute Member m) {
 		
 		String userPwd = bcrypt.encode(m.getUserPwd());

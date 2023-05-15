@@ -6,5 +6,6 @@
    </settings>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/group-mapper.xml"/>
 	</mappers>
 </configuration>

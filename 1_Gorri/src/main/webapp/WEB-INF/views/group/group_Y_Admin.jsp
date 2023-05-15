@@ -61,8 +61,7 @@
 <%@include file="../common/top.jsp" %>
 <br><br><br><h3 style="text-align:center"><b>모임명</b></h3>
 <hr style="border:solid 10px black; margin:auto; width:30%; border-width:2px;"> <!-- 모임명 중앙 선 -->
-<br><h6 style="text-align:center">모임 한 줄 소개 여기에 표시</h6>
-<br><br>
+<br><br><br>
 
 	<table width="60%" style="margin-top:200px; margin:auto; text-align:center; "> <!--테이블 전체 크기와 중앙 정렬 -->
 	    <tr>
