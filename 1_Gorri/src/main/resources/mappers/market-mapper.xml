@@ -9,15 +9,21 @@
 	</select>
 	
 	<select id="marketMainPage" resultMap="ProductBoardResultSet">
-		
+		select *
+		from product
+		order by product_no desc
 	</select>
 
 
 	<resultMap type="Product" id="ProductBoardResultSet">
-		<id column="" property=""/>
-		<result column="" property=""/>
-	
-	
+		<id column="PRODUCT_NO" property="productNo"/>
+		<result column="PRO_NAME" property="productName"/>
+		<result column="PRO_CONTENT" property="productContent"/>
+		<result column="PRICE" property="productPrice"/>
+		<result column="POSTDATE" property="productPostDate"/>
+		<result column="MODIFY_DATE" property="productModifyDate"/>
+		<result column="CATEGORY" property="productCategory"/>
+		<result column="SELLER_ID" property="productSellerID"/>
 	</resultMap>
 
 

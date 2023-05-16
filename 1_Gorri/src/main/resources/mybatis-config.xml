@@ -7,5 +7,6 @@
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 <!-- 		<mapper resource="mappers/group-mapper.xml"/> -->
+		<mapper resource="mappers/market-mapper.xml"/>
 	</mappers>
 </configuration>
