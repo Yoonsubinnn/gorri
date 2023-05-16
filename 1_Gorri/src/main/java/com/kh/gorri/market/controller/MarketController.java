@@ -26,12 +26,7 @@ public class MarketController {
 	 * TODO는 작성해야 하는 로직입니다. TODO가 없으면 완성이라고 간주합니다.
 	 * 각 메서드 위에 무슨 메서드인지 주석도 남겨놨습니다.
 	 * */
-	
-	
-	
-	
-	
-	
+//	----------------------------0
 	/**
 	 * 각 게시물을 누르면 게시물의 상세내용으로 이동합니다.
 	 * @author lee94
@@ -94,8 +89,10 @@ public class MarketController {
 	
 	/**
 	 * 마켓 메인페이지로 넘어가게 하는 기능
+	 * 마켓 메인페이지로 넘어가려면,
+	 * 페이지네이션과 모든 마켓 리스트를 가져와야 합니다.
 	 */
-	@GetMapping("MainPage.market")
+	@RequestMapping("MainPage.market")
 	public String marketMainPage(@RequestParam(value = "page", required = false) Integer currentPage,
 								Model model
 								) {
@@ -112,6 +109,7 @@ public class MarketController {
 		System.out.println(pi);
 		//limit가 9인 page
 		
+		//다시 이걸 페이지에 넘긴다.
 		ArrayList<Product> list = mService.marketMainPage(pi, 1);
 		System.out.println(list);
 		
@@ -127,6 +125,12 @@ public class MarketController {
 		
 		
 	}
+	/*위에꺼 수정하면, 이거 날려버리세요*/
+//	@RequestMapping("MainPage.market")
+//	public String marketMainPage() {
+//		System.out.println("marketMainPage");
+//		return "marketMainPage";
+//	}
 	
 	
 	
