@@ -2,18 +2,21 @@ package com.kh.gorri.market.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.gorri.common.Pagination;
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.market.model.exception.MarketException;
 import com.kh.gorri.market.model.service.MarketService;
 import com.kh.gorri.market.model.vo.Product;
+import com.kh.gorri.member.model.vo.Member;
 
 @Controller
 public class MarketController {
@@ -29,16 +32,46 @@ public class MarketController {
 //	----------------------------0
 	/**
 	 * 각 게시물을 누르면 게시물의 상세내용으로 이동합니다.
+	 * 
+	 * 1. 글 작성자와 로그인한 사람이 같은지 알아야 하는 정보를 받아야 하고,
+	 * 2. Product객체의 정보를 받아와야 하기 때문에 받아오고,
+	 * 
+	 * 그니까 이건,  이 컨트롤러는 왜 존재하냐?
+	 * 제품 상세 표시 링크의 jsp 공간을 메꾸기 위해 존재한다.
+	 * 이 공간에는 뭐가 존재하느냐?
+	 * 1. 로그인 정보
+	 * 2. 게시글 작성자 정보
+	 * 3. 연관된 게시글 정보(문의, 후기)
+	 * 4. 상품 번호(이걸로 가져오는 과정을 단축시킬 수 있음)
+	 * 
 	 * @author lee94
 	 */
 	@RequestMapping("ProductDetail.market")
-	public String marketProductDetail() {
-		//TODO
+	public ModelAndView marketProductDetail(HttpSession session,
+											@RequestParam("ProductId") String ProductId) {
 		
-		System.out.println("marketProductDetail");
+		Member m = (Member)session.getAttribute("loginUser");
+		Product p = mService.getProductInfo(ProductId);		
+		//제품 정보를 가져옴. 멤버 객체를 세션을 통해 생성
 		
-		return "marketProductDetail";
+		
+		
+		
+		
+//		System.out.println("marketProductDetail");
+		
+		return null;
 	}
+	//위가 완성되기 전에는 이걸 사용하세요
+//	@RequestMapping("ProductDetail.market")
+//	public String marketProductDetail() {
+//		//TODO
+//		
+//		System.out.println("marketProductDetail");
+//		
+//		//다 수정하면 marketProduct로 바꿔주세요
+//		return "marketProductDetail";
+//	}
 	/**
 	 * 마켓 메인페이지에서 등록한 상품 버튼 누르면
 	 * 유저가 등록한 상품 게시판으로 이동

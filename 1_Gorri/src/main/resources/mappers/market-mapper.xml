@@ -14,6 +14,7 @@
 		order by product_no desc
 	</select>
 
+	<!-- 상품의 DB와 클래스를 위한 매핑입니다. -->
 
 	<resultMap type="Product" id="ProductBoardResultSet">
 		<id column="PRODUCT_NO" property="productNo"/>
@@ -26,8 +27,12 @@
 		<result column="SELLER_ID" property="productSellerID"/>
 	</resultMap>
 
-
-
+	<!-- 상품의 상세 정보를 위한 매핑입니다. -->
+	<select id="getProductInfo">
+		select *
+		from product
+		where seller_id = ${productId}
+	</select>
 
 
 

@@ -312,7 +312,7 @@
 	
 	
 	
-	
+	+
 <script>
 	window.onload = function() {
 	    let bigPic = document.querySelector('.img-big');

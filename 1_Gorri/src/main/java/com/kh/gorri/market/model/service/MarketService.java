@@ -11,4 +11,6 @@ public interface MarketService {
 
 	ArrayList<Product> marketMainPage(PageInfo pi, int i);
 
+	Product getProductInfo(String userId);
+
 }

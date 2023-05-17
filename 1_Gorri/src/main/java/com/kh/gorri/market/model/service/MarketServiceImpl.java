@@ -17,6 +17,7 @@ import com.kh.gorri.market.model.vo.Product;
 	 */
 @Service
 public class MarketServiceImpl implements MarketService {
+		
 		@Autowired
 		private SqlSessionTemplate sqlSession;
 		@Autowired
@@ -27,11 +28,21 @@ public class MarketServiceImpl implements MarketService {
 			// TODO Auto-generated method stub
 			return mDAO.getListCount(sqlSession, i);
 		}
-
+		/**
+		 * 마켓 메인페이지로 가는 서비스
+		 */
 		@Override
 		public ArrayList<Product> marketMainPage(PageInfo pi, int i) {
 			// TODO Auto-generated method stub
 			return mDAO.marketMainPage(sqlSession,pi,i);
+		}
+
+		/**
+		 * 상품의 정보를, 상품을 등록한 유저의 id를 통해 가져오게 함.
+		 */
+		@Override
+		public Product getProductInfo(String productId) {
+			return mDAO.getProductInfo(sqlSession,productId);
 		}
 	
 }
