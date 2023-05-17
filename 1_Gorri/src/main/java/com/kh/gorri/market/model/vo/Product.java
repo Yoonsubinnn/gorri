@@ -7,7 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
+/**
+ * 마켓 테이블 위한 클래스
+ * @author lee94
+ *
+ */
 
 @NoArgsConstructor
 @AllArgsConstructor
