@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="marketMapper">
+
+	<!-- 단순히 페이지네이션을 위한 count입니다. -->
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from product
+	</select>
+	
+	<select id="marketMainPage" resultMap="ProductBoardResultSet">
+		select *
+		from product
+		order by product_no desc
+	</select>
+
+
+	<resultMap type="Product" id="ProductBoardResultSet">
+		<id column="PRODUCT_NO" property="productNo"/>
+		<result column="PRO_NAME" property="productName"/>
+		<result column="PRO_CONTENT" property="productContent"/>
+		<result column="PRICE" property="productPrice"/>
+		<result column="POSTDATE" property="productPostDate"/>
+		<result column="MODIFY_DATE" property="productModifyDate"/>
+		<result column="CATEGORY" property="productCategory"/>
+		<result column="SELLER_ID" property="productSellerID"/>
+	</resultMap>
+
+
+
+
+
+
+
+
+
+</mapper>

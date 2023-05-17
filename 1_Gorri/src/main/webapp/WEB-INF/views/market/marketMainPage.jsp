@@ -120,248 +120,86 @@
 
 
 
-<!-- 게시판 하나만 빼기. 이 안에서 foreach 돌려라/  -->
-<div style="text-align:center; margin:30px; margin-left:auto; margin-right:auto;">
-	<table class="bigGroupTable" style="border-color:white">	
-		<tr>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">
-							<img src="resources/assets/musical.jpg" class="gThumnail">
-						</td>
-					</tr>
-					<tr>
-						<td class="groupTitle"><a href="${ contextPath }/ProductDetail.market" class="groupLink">오페라의 유령</a></td>
-					</tr>
-					<tr>
-						<td class="groupIntro">오페라의 유령 얘기할 사람</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
- </div>
+<!-- 게시판 하나만 빼기. 이 안에서 foreach 돌려라/ 
+			list가 넘어오는 아이디라 가정하겠다. -->
 
+	<c:forEach items="${ list }" var="a" >
+	<div style="text-align:center; margin:30px; margin-left:auto; margin-right:auto;">
+		<table class="bigGroupTable" style="border-color:white">	
+			<tr>
+				<td>
+					<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
+						<tr>
+							<td class="groupPic">
+								<img src="resources/assets/musical.jpg" class="gThumnail">
+								<!-- 이미지 src바꿔야함. -->
+							</td>
+						</tr>
+						<tr>
+							<td class="groupTitle"><a href="${ contextPath }/ProductDetail.market" class="groupLink">${ a.productName }</a></td>
+							<!-- 페이지로 넘어갈 때, 그것의 속성을 가지고 넘어가야 합니다. -->
+						</tr>
+						<tr>
+							<td class="groupIntro">${ a.productPrice }</td>
+						</tr>
+						<tr>
+							<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
+								<!-- 태그가 나오도록 수정하세요 -->
+								<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
+								<span>10</span>
+							</td> 
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</c:forEach>
+	
 
-
-<!-- 모임 목록 입니다.  -->
-<%-- <div style="text-align:center; margin:30px; margin-left:auto; margin-right:auto;">
-	<table class="bigGroupTable" style="border-color:white">	
-		<tr>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">
-							<img src="resources/assets/musical.jpg" class="gThumnail">
-						</td>
-					</tr>
-					<tr>
-						<td class="groupTitle"><a href="${ contextPath }/groupDetailY.gr" class="groupLink">오페라의 유령</a></td>
-					</tr>
-					<tr>
-						<td class="groupIntro">오페라의 유령 얘기할 사람</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">
-							<img src="resources/assets/marvel.jpg" class="gThumnail">
-						</td>
-					</tr>
-					<tr>
-						<td class="groupTitle"><a href="${ contextPath }/groupDetailN.gr" class="groupLink">영화를 사랑하는 모임</a></td>
-					</tr>
-					<tr>
-						<td class="groupIntro">같이 영화 볼 사람 모집</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">
-							<img src="resources/assets/knitting.jpg" class="gThumnail">
-						</td>					
-					</tr>
-					<tr>
-						<td class="groupTitle"><a href="${ contextPath }/groupDetailAdmin.gr" class="groupLink">뜨개뜨개</a></td>
-					</tr>
-					<tr>
-						<td class="groupIntro">뜨개질 정보 공유</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-			
-		</tr>
-		
-		
-		<tr>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">thumnail</td>
-					</tr>
-					<tr>
-						<td class="groupTitle">모임명</td>
-					</tr>
-					<tr>
-						<td class="groupIntro">모임 한줄 소개</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">thumnail</td>
-					</tr>
-					<tr>
-						<td class="groupTitle">모임명</td>
-					</tr>
-					<tr>
-						<td class="groupIntro">모임 한줄 소개</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">thumnail</td>
-					</tr>
-					<tr>
-						<td class="groupTitle">모임명</td>
-					</tr>
-					<tr>
-						<td class="groupIntro">모임 한줄 소개</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-			
-		</tr>
-		
-		
-		<tr>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">thumnail</td>
-					</tr>
-					<tr>
-						<td class="groupTitle">모임명</td>
-					</tr>
-					<tr>
-						<td class="groupIntro">모임 한줄 소개</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">thumnail</td>
-					</tr>
-					<tr>
-						<td class="groupTitle">모임명</td>
-					</tr>
-					<tr>
-						<td class="groupIntro">모임 한줄 소개</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;">
-					<tr>
-						<td class="groupPic">thumnail</td>
-					</tr>
-					<tr>
-						<td class="groupTitle">모임명</td>
-					</tr>
-					<tr>
-						<td class="groupIntro">모임 한줄 소개</td>
-					</tr>
-					<tr>
-						<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-							<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-							<span>10</span>
-						</td> 
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
- </div>
-  --%>
  <!-- 4. 페이지네이션-->
 	
-	<nav aria-label="Page navigation example">
-	  <ul class="pagination justify-content-center">
-	    <li class="page-item disabled">
-	      <a class="page-link">Previous</a>
-	    </li>
-	    <li class="page-item"><a class="page-link" href="#">1</a></li>
-	    <li class="page-item"><a class="page-link" href="#">2</a></li>
-	    <li class="page-item"><a class="page-link" href="#">3</a></li>
-	    <li class="page-item">
-	      <a class="page-link" href="#">Next</a>
-	    </li>
-	  </ul>
-	</nav>
- 
+<!-- 	<nav aria-label="Page navigation example"> -->
+<!-- 	  <ul class="pagination justify-content-center"> -->
+<!-- 	    <li class="page-item disabled"> -->
+<!-- 	      <a class="page-link">Previous</a> -->
+<!-- 	    </li> -->
+<!-- 	    <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+<!-- 	    <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+<!-- 	    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!-- 	    <li class="page-item"> -->
+<!-- 	      <a class="page-link" href="#">Next</a> -->
+<!-- 	    </li> -->
+<!-- 	  </ul> -->
+<!-- 	</nav> -->
+ 		<nav aria-label="Standard pagination example" style="float: right;">
+        	<ul class="pagination">
+	            <li class="page-item">
+	            	<c:url value="${ loc }" var="goBack">
+	            		<c:param name="page" value="${ pi.currentPage - 1 }"/>
+	            	</c:url>
+	            	<a class="page-link" href="${ goBack }" aria-label="Previous">
+	            		<span aria-hidden="true">&laquo;</span>
+	              	</a>
+	            </li>
+	            
+	            <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+	            	<c:url var="goNum" value="${ loc }">
+	            		<c:param name="page" value="${ p }"/>
+	            	</c:url>
+	            	<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
+	            </c:forEach>
+	            
+	            <li class="page-item">
+	            	<c:url value="${ loc }" var="goNext">
+	            		<c:param name="page" value="${ pi.currentPage + 1 }"/>
+	            	</c:url>
+	            	<a class="page-link" href="${ goNext }" aria-label="Next">
+	            		<span aria-hidden="true">&raquo;</span>
+	            	</a>
+	            </li>
+	    	</ul>
+        </nav>
  
  
  
