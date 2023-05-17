@@ -138,6 +138,15 @@
 	
 </style>
 </head>
+
+				<!-- 작성중입니다. 로직을 위해.
+				현재 버전으로 서버 돌리면  이 페이지로 넘어가지진 않습니다. -->
+
+
+
+
+
+
 <body>
 	<%@ include file="../common/top.jsp" %>
 	<br>
@@ -188,6 +197,10 @@
 			
 		<div class="line"></div>
 			
+			
+		<!-- 상품정보 :
+			상품의 이름,
+			상품의 설명 들어감-->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 --> 
 			<div class="section2"> <!-- section 2: 판매자가 입력한 상품 상세정보 입력부분 -->
 				<div class="product-info"><i class="bi bi-caret-right-fill"></i> 상품정보</div>
@@ -199,6 +212,9 @@
 			
 		<div class="line"></div>
 			
+			
+			
+		<!-- 판매자의 정보. 마이홈 링크 -->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->	
 			<div class="section3"> <!-- 판매자 정보관련 -->
 				<div class="profile">
@@ -211,6 +227,8 @@
 			
 		<div class="line"></div>
 		
+		
+		<!-- 문의내역 -->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->
 			<div class="section4">
 				<div class="product-info"><i class="bi bi-pencil-fill"></i> 상품 문의</div>
@@ -223,20 +241,35 @@
 					</tr>
 					<!-- foreach로 5개만 보이게 반복 돌리며 페이지네이션 
 						근데 이거 aJax로 구현해야 할 것 같은데. -->
+						
 					<c:forEach items="#" var="#">
 						<tr>
-						<td>1</td>
-						<td>작성자1</td>
-						<td>어쩌고 저쩌고 궁금합니다.....</td>
-						<td>2023.00.00</td>
-					</tr>
+							<td>1</td>
+							<td>작성자1</td>
+							<td>어쩌고 저쩌고 궁금합니다.....</td>
+							<td>2023.00.00</td>
+						</tr>
 					</c:forEach>
 				</table>
+				
+				
+				<!-- 문의등록 버튼, 이 친구는 로그인을 했을 때만 존재하도록 -->
+				<c:if test="#" var="#">
+					<div class="reply re-input">
+						<div class="re-id">작성자ID</div> <!-- 로그인한 사용자 프로필 주소로 변경하기.. -->
+						<div class="re-text"><input class="re-text" type="text" placeholder="내용을 입력하세요."></div>
+						<div class="re-submit"><button type="submit" class="button2">문의등록</button></div>
+					</div>
+				</c:if>
+				
 			</div>
 		</div>		
 			
 		<div class="line"></div>
 			
+		<!-- 후기 
+			얘는 그냥 마이페이지에서만 작성할 수 있어서. 작성버튼 따로 없음.
+			얘는 그냥 보여지는거임.-->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->	
 			<div class="section5">
 				<div class="product-info"><i class="bi bi-pencil-fill"></i> 구매 후기</div>
@@ -247,36 +280,16 @@
 						<th class="title">내용</th>
 						<th class="date">작성일자</th>
 					</tr>
-					<tr>
+					
+					<c:forEach items="#" var="#">
+						<tr>
 						<td>1</td>
 						<td>작성자1</td>
 						<td>너무너무 맛이ㅣㅆ어요~</td>
 						<td>2023.00.00</td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>작성자2</td>
-						<td>잘샀습니다.</td>
-						<td>2023.00.00</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>작성자3</td>
-						<td>안전거래 굿</td>
-						<td>2023.00.00</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>작성자4</td>
-						<td>최고에요</td>
-						<td>2023.00.00</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>작성자5</td>
-						<td>재구매할꺼에요</td>
-						<td>2023.05.06</td>
-					</tr>
+					</c:forEach>
+					
 				</table>
 			</div>
 		</div>
@@ -286,7 +299,7 @@
 	<%@ include file="../common/footer.jsp" %>
 	
 	
-	<!-- 삭제확인 알림창 -->
+	<!-- 삭제확인 알림 모달 -->
 	<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -326,7 +339,7 @@
 		    }
 		}
 	
-	</script>ㄴ
+	</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
