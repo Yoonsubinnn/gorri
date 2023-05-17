@@ -9,7 +9,7 @@ public class AdminController {
 	
 	@RequestMapping("adminDash.ad")
 	public String adminDash() {
-		return "updateWrite";
+		return "adminDash";
 	}
 	
 	@RequestMapping("adminMember.ad")

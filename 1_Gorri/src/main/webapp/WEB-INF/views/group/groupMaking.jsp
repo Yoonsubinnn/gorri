@@ -58,59 +58,74 @@
 </div>
 <br><br><br>
 
-<div class="aligncenterhae" style="height:1000px; width:1000px; border:2px solid #ffab00; margin-left:auto; margin-right:auto; border-radius:2em; padding:90px;">
+<div class="aligncenterhae" style="height:800px; width:1000px; border:2px solid #ffab00; margin-left:auto; margin-right:auto; border-radius:2em; padding:90px;">
 	<!-- 모임이름, 카테고리 -->
-	<table style="text-align:left;">
-		<tr>
-			<td rowspan="2"><div class="groupPic" style="border-radius:2em;"> 모임 사진</div></td>
-			<td class="tdtwwo">모임 이름</td>
-			<td><input class="form-control me-2" aria-label="Search" style="width:200px; border: 1px solid gray;"></td>
-		</tr>
+	<form action="${ contextPath }/insertGroup.gr" method="post" enctype="multipart/form-data">
+		<table style="text-align:left;">
+			<tr>
+				<td rowspan="2">
+					<div class="groupPic" style="border-radius:2em; border:3px solid #ffab00">
+						<input type="file" class="form-control form-control-lg" name="file">
+						
+					</div>
+					<div class="showPic" style="display:none;" required>
+					
+					</div>
+				</td>
+				<td class="tdtwwo">모임 이름</td>
+				<td><input name="membershipName" class="form-control me-2" style="width:200px; border: 1px solid gray;" required></td>
+			</tr>
+			
+			<tr>
+				<td class="tdtwwo">카테고리</td>
+				<td>
+					<button type="button" class="btn btn-danger dropdown-toggle selectCate" data-bs-toggle="dropdown" aria-expanded="false"  style="background-color:white; border:1px solid gray; color:black;">
+	   				 -------
+	  				</button> &nbsp;
+	  				<ul class="dropdown-menu">
+	    				<li><a class="dropdown-item cateSel">예술</a></li>
+	    				<li><a class="dropdown-item cateSel">운동</a></li>
+	    				<li><a class="dropdown-item cateSel">음식</a></li>
+	    				<li><a class="dropdown-item cateSel">여행</a></li>
+	    				<li><a class="dropdown-item cateSel">창작</a></li>
+	    				<li><a class="dropdown-item cateSel">자기계발</a></li>
+	  				</ul>
+	  				<input type="hidden" id="category" name="category" required>
+	  			</td>
+			</tr>
+		</table>
 		
-		<tr>
-			<td class="tdtwwo">카테고리</td>
-			<td>
-				<button type="button" class="btn btn-danger dropdown-toggle selectCate" data-bs-toggle="dropdown" aria-expanded="false"  style="background-color:white; border:1px solid gray; color:black;">
-   				 -------
-  				</button> &nbsp;
-  				<ul class="dropdown-menu">
-    				<li><a class="dropdown-item cateSel">예술</a></li>
-    				<li><a class="dropdown-item cateSel">운동</a></li>
-    				<li><a class="dropdown-item cateSel">음식</a></li>
-    				<li><a class="dropdown-item cateSel">여행</a></li>
-    				<li><a class="dropdown-item cateSel">창작</a></li>
-    				<li><a class="dropdown-item cateSel">자기계발</a></li>
-  				</ul>
-  			</td>
-		</tr>
-	</table>
-	
-	<br><hr>
-	
-	<table>
-		<tr>
-			<td colspan="6" class="tdtwwo" style="height:70px; text-align:left;"> 개설자 정보</td>
-		</tr>
+		<br><hr>
 		
-		<tr style="text-align:left;">
-			<td class="tdtwwo" style="height:50px; weight:10px; font-size:20px">이름</td>
-			<td><input class="form-control me-2" aria-label="Search" placeholder="이름 입력" style="width:170px; border: 1px solid gray;"></td>
-			<td class="tdtwwo" style="padding-left:8px; height:50px; weight:10px; font-size:20px">연락처</td>
-			<td><input class="form-control me-2" aria-label="Search" placeholder="연락처 입력" style="width:170px; border: 1px solid gray;"></td>
-			<td class="tdtwwo"  style="padding-left:8px; height:50px; weight:10px; font-size:20px">이메일</td>
-			<td><input class="form-control me-2" aria-label="Search" placeholder="이메일 입력" style="width:170px; border: 1px solid gray;"></td>
-		</tr>
-		<tr style="height:100px; padding-top:20px">
-			<td colspan="6" class="tdtwwo">모임 한줄 소개</td>
-		</tr>
-		<tr style="padding-top:10px">
-			<td colspan="6"><input class="form-control me-2" aria-label="Search" placeholder="모임 한줄 소개" style="width:100%; border: 1px solid lightgrey;"></td>
-		</tr>
-	</table>
-	
-	<br><br>
-	<button class="button" style="50px;"><b>가입하기</button>
-	
+		<div align="center">
+			<table>
+				<tr>
+					<td colspan="4" class="tdtwwo" style="height:70px; text-align:left;"> 개설자 정보</td>
+				</tr>
+				
+				<tr style="text-align:left;">
+					<td class="tdtwwo" style="height:50px; width:100px; font-size:20px">아이디</td>
+					<td>
+						<input name="hostId" class="form-control me-2" value="${ loginUser.userId }" style="width:170px; border: 1px solid gray;" readonly required>
+					</td>
+					<td class="tdtwwo" style="padding-left:8px; height:50px; width:100px; font-size:20px">연락처</td>
+					<td>
+						<input name="hostPhone" class="form-control me-2" placeholder="연락처 입력" style="width:170px; border: 1px solid gray;" required>
+					</td>
+				</tr>
+				<tr >
+					<td colspan="6" class="tdtwwo" style="height:30px; padding-top:20px;">모임 한줄 소개</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="padding-left:30px; padding-right:10px; padding-top:10px;">
+						<input name="membershipContent" class="form-control me-2" placeholder="모임 한줄 소개" style="width:100%; border: 1px solid lightgrey;" required>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br><br>
+		<button type="submit" class="button" style="50px;"><b>가입하기</button>
+	</form>
 </div>	
 
 <br>
@@ -126,7 +141,12 @@ const handleSelect = function(item) {
 }
 // 옵션 클릭시 클릭한 옵션을 넘김
 options.forEach(function(option){
-  option.addEventListener('click', function(){handleSelect(option)})
+  option.addEventListener('click', function(){
+	  
+	  handleSelect(this);
+	  document.getElementById('category').value=this.innerText;
+	  console.log(document.getElementById('category').value);
+	 })
 })
 </script>
 </body>

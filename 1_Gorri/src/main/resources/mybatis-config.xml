@@ -4,14 +4,8 @@
 	<settings>
    		<setting name="jdbcTypeForNull" value="NULL" />
    </settings>
-   
-   <typeAliases>
-		<typeAlias type="com.kh.gorri.market.model.vo.Product" alias="Product"/>
-	</typeAliases>
-   
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
-<!-- 		<mapper resource="mappers/group-mapper.xml"/> -->
-		<mapper resource="mappers/market-mapper.xml"/>
+		<mapper resource="mappers/group-mapper.xml"/>
 	</mappers>
 </configuration>

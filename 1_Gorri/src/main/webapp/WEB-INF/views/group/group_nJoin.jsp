@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,15 +56,15 @@
 }
 
 </style>
-<script src="../js/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
 <%@include file="../common/top.jsp" %>
 <br><br><br><h3 style="text-align:center"><b>모임명</b></h3>
 <hr style="border:solid 10px black; margin:auto; width:30%; border-width:2px;"> <!-- 모임명 중앙 선 -->
-<br><br><br>
-
+<br><h6 style="text-align:center">모임 한 줄 소개 여기에 표시</h6>
+<br><br>
+	
 	<table width="60%" style="margin-top:200px; margin:auto; text-align:center; "> <!--테이블 전체 크기와 중앙 정렬 -->
 	    <tr>
         	<td>
@@ -75,7 +74,7 @@
 	        			<br>
 	        		<div>
 	        			<p>
-	        			멤버()
+	        			멤버(15)
 	        				<div id="like"; style="margin:0 auto; width:25px; height:25px;"><img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer; display:block;">
 	        				<p id="count">230</p>
 	        				</div> <!-- 좋아요 버튼 -->
@@ -85,7 +84,7 @@
 	        		<br><p img src="">카테고리 표시</p> <!-- 설정한 카테고리에 맞는 카테고리와 아이콘 보임 -->
 	        		<div style="border-radius:2em; margin:0 auto; width:290px; height:100px; border:1px solid #FFAA00; padding:15px;">여기는 행복한 모임입니다! 맛집도 가고 친목도 다지는 그런 모임 다들 들어오세요!</div> <!-- 모임 소개 글 --> 
        	 			<br>
-       	 			<a href="${ contextPath }/groupJoin.gr"><button class="button" style=""><b>가입하기</button></a>
+       	 			<button class="button" style=""><b>가입하기</button>
 					
        	 		</div> <!-- 1번째 블럭 끝  -->
        	 	</td> <!-- 1번째 블럭 끝 -->

@@ -54,7 +54,7 @@
 			<h2 class="card-title text-center" style="color:#113366;">회원가입</h2>
 		</div>
 		<div class="card-body">
-      <form class="form-signin" method="POST" action="${contextPath }/insertMember.me">
+      <form class="form-signin" method="POST" action="insertMember.me">
         
         <label for="uName">&nbsp;&nbsp;이름</label>
         <input type="text" id="uName" class="form-control" placeholder="Your Name" name="userName" required autofocus><BR>

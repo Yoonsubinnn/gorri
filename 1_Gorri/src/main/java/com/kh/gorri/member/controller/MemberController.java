@@ -57,15 +57,17 @@ public class MemberController {
 
 	//회원가입 : 보서 - 2023-05-12 23:08분 ----------------------------
 	@RequestMapping("join.me")
-	public String insertMember() {
+	public String join() {
 		return "join";
 	}
 	
 	@RequestMapping("insertMember.me")
-	public String Join(@ModelAttribute Member m) {
+	public String insertMember(@ModelAttribute Member m) {
 		
 		String userPwd = bcrypt.encode(m.getUserPwd());
 		m.setUserPwd(userPwd);
+		System.out.println(m.getUserName());
+		System.out.println(userPwd);
 		
 		int result = mService.insertMember(m);
 		if(result > 0 ) {
@@ -104,21 +106,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("findIdResult.me")
-	   public String findIdResult(@ModelAttribute Member m, Model model) {
-	   
-	    String user = mService.findId(m);
-		System.out.println(user);
-		if(user != null){
-	      if(!user.isEmpty()) {
-	         model.addAttribute("userName", m.getUserName());
-	         model.addAttribute("userId", user);
-	         return "findIdResult";
-	      } else {
-	         return "findIdResultFail";
-	      }
-	      }else{
-	        return "findIdResultFail";
-	   }
+	public String findIdResult(@ModelAttribute Member m, Model model) {
+//		
+//		Member user = mService.findId(m);
+//		System.out.println(user.getUserId());
+		return null; //뷰 이름 다시 해주기 join 도 ;
 	}
 	
 	

@@ -11,7 +11,6 @@ import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.group.model.dao.GroupDAO;
 import com.kh.gorri.group.model.vo.Attachment;
 import com.kh.gorri.group.model.vo.Group;
-import com.kh.gorri.group.model.vo.GroupBoard;
 import com.kh.gorri.group.model.vo.GroupMember;
 
 @Service
@@ -58,31 +57,7 @@ public class GroupServiceImpl implements GroupService {
 		return gDAO.searchGroupList(sqlSession, search);
 	}
 
-
-	@Override
-	public ArrayList<Group> selectGroupView(int groupNo) {
-		return gDAO.selectGroupView(sqlSession, groupNo);
-	}
-
-	@Override
-	public int getListCount(int i) {
-		return gDAO.selectListCount(sqlSession, i);
-	}
-
-	@Override
-	public ArrayList<GroupBoard> selectBoardList(PageInfo pi, int i) {
-		return gDAO.selectBoardList(sqlSession, pi, i);
-	}
-
-	@Override
-	public GroupBoard selectDetailBoard(GroupBoard gb) {
-		return gDAO.selectDetailBoard(sqlSession, gb);
-	   }
-
-	@Override
-	public ArrayList<Group> selectGroupListWithHost(PageInfo pi) {
-		return gDAO.selectGroupListWithHost(sqlSession, pi);
-	}
+	
 
 	
 	
