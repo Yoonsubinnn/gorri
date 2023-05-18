@@ -15,7 +15,9 @@ import com.kh.gorri.common.Pagination;
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.market.model.exception.MarketException;
 import com.kh.gorri.market.model.service.MarketService;
+import com.kh.gorri.market.model.vo.Inquire;
 import com.kh.gorri.market.model.vo.Product;
+import com.kh.gorri.market.model.vo.Review;
 import com.kh.gorri.member.model.vo.Member;
 
 @Controller
@@ -33,44 +35,73 @@ public class MarketController {
 	/**
 	 * 각 게시물을 누르면 게시물의 상세내용으로 이동합니다.
 	 * 
-	 * 1. 글 작성자와 로그인한 사람이 같은지 알아야 하는 정보를 받아야 하고,
-	 * 2. Product객체의 정보를 받아와야 하기 때문에 받아오고,
-	 * 
-	 * 그니까 이건,  이 컨트롤러는 왜 존재하냐?
-	 * 제품 상세 표시 링크의 jsp 공간을 메꾸기 위해 존재한다.
-	 * 이 공간에는 뭐가 존재하느냐?
-	 * 1. 로그인 정보
-	 * 2. 게시글 작성자 정보
-	 * 3. 연관된 게시글 정보(문의, 후기)
-	 * 4. 상품 번호(이걸로 가져오는 과정을 단축시킬 수 있음)
-	 * 
 	 * @author lee94
 	 */
-	@RequestMapping("ProductDetail.market")
-	public ModelAndView marketProductDetail(HttpSession session,
-											@RequestParam("ProductId") String ProductId) {
+	@RequestMapping("Product.market")
+	public ModelAndView marketProduct(HttpSession session,
+											ModelAndView mv,
+											@RequestParam("productId") int productId,	//상품번호(productId)
+//											@RequestParam("writer") String writer, 
+											@RequestParam("page") int page) {
 		
-		Member m = (Member)session.getAttribute("loginUser");
-		Product p = mService.getProductInfo(ProductId);		
-		//제품 정보를 가져옴. 멤버 객체를 세션을 통해 생성
+		
+		Member m = (Member)session.getAttribute("loginUser");	//지금 로그인한 놈 객체 만드는 함수
+		//지금 당장은 필요없지만, 나주엥 쓰일스도 있어서 만들어놓음.
+		Product p = mService.getProductInfo(productId);
+		System.out.println(p);
+		Member seller = mService.getSellerInfo(p.getProductSellerId());	//판매자 정보(아이디)를 통해 멤버객체를 생성하는, 판매자 정보를 가져오는  함수
+		//세션에 담긴 로그인한 멤버 객체를 생성하고, 상품번호를 통해 상품객체를 만듦.
+		
+		/*만일, 다른페이지로 넘길 때, 그 페이지에 if문을 쓰기 싫으면 이걸 작성합니다.
+		 * 여기서 p의 getProductSellerId랑  m.userid랑 비교해서
+		 * 맞으면 여기, 틀리면 저기로 넘어가게 합니다.*/
+		//하지만, 그냥 같은페이지를 사용하기로 한다면 아래와 같이 합니다.
+		
+				/*해야할 것:ㅣ
+				 * 1. 상품의 id를 통해 문의, 후기를 가져오기*/
+		//1. 문의
+		ArrayList<Inquire> productInq = mService.getProductInquire(productId);
+		System.out.println(productInq); 
+		
+		//2. 후기
+		
+		ArrayList<Review> productReview = mService.getProductReview(productId);
+		System.out.println(productInq); 
 		
 		
+		
+		
+		
+		
+		
+		if (p != null) {		//제대로 가져왔다면, 다음과 같이 매핑합니다. 이 값은 product페이지에서 사용합니다.
+			mv.addObject("p", p);
+			mv.addObject("page", page);
+			mv.addObject("seller", seller);
+			mv.addObject("productInq", productInq);
+			mv.addObject("productReview", productReview);
+//			mv.addObject("list", list);
+			mv.setViewName("marketProduct");	//어느 jsp로 보내는지에 대한 것
+
+			return mv;
+		} else {
+			throw new MarketException("게시글 상세보기를 실패하였습니다.");
+		}
 		
 		
 		
 //		System.out.println("marketProductDetail");
 		
-		return null;
 	}
 	//위가 완성되기 전에는 이걸 사용하세요
-//	@RequestMapping("ProductDetail.market")
+//	@RequestMapping("Product.market")
 //	public String marketProductDetail() {
 //		//TODO
 //		
 //		System.out.println("marketProductDetail");
 //		
 //		//다 수정하면 marketProduct로 바꿔주세요
-//		return "marketProductDetail";
+//		return "marketProduct";
 //	}
 	/**
 	 * 마켓 메인페이지에서 등록한 상품 버튼 누르면
@@ -136,15 +167,15 @@ public class MarketController {
 			currentPage = 1;
 		}
 		int listCount = mService.getListCount(1);
-		System.out.println(listCount);
+//		System.out.println(listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 9);
-		System.out.println(pi);
+//		System.out.println(pi);
 		//limit가 9인 page
 		
 		//다시 이걸 페이지에 넘긴다.
 		ArrayList<Product> list = mService.marketMainPage(pi, 1);
-		System.out.println(list);
+//		System.out.println(list);
 		
 		if(list !=null) {
 			//잘 가져왔을 때.

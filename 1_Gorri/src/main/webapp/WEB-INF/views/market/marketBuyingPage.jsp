@@ -104,7 +104,7 @@ button {
 </style>
 </head>
 <body>
-<%@ include file="../common/top.jsp" %> <!-- header 파일 -->
+<%@ include file="marketTop.jsp" %> <!-- header 파일 -->
 
 	<br><br>
 	
@@ -187,7 +187,7 @@ button {
 		</div>
   	
   	
-<%@ include file="../common/footer.jsp" %> <!-- footer 파일 -->
+<%@ include file="marketFooter.jsp" %> <!-- footer 파일 -->
 </body>
 <script>
 	// 수량 버튼 - + 함수

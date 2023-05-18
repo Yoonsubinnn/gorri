@@ -74,7 +74,7 @@
 <body>
 
 	<!-- 탑 -->
-	<%@ include file="../common/top.jsp" %>
+	<%@ include file="marketTop.jsp" %>
 	
 	<!-- 테두리 -->
 	<div class="border-line">
@@ -124,7 +124,7 @@
 	</div>
 	
 	<!-- 푸터 -->
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="marketFooter.jsp" %>
 	
 	<script>
 		document.getElementById('submitAttm').addEventListener('click', () => {

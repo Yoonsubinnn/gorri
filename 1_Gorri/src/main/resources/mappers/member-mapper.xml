@@ -7,7 +7,7 @@
 		from USERS
 		where users_id=#{userId} and pwd=#{userPwd} and status='Y'  
 	</select>
-	<resultMap type="com.kh.gorri.member.model.vo.Member" id="memberResultSet">
+	<resultMap type="Member" id="memberResultSet">
 		<id column="ID" property="id"/>
 		<result column="USERS_ID" property="userId"/>
 		<result column="PWD" property="userPwd"/>

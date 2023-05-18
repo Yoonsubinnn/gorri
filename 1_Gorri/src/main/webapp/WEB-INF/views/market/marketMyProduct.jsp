@@ -138,7 +138,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/top.jsp" %>
+	<%@ include file="marketTop.jsp" %>
 	<br>
 	<div class="div"> <!-- 제일 바깥쪽 여백 범위 위한 div -->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->
@@ -285,7 +285,7 @@
 	</div>
 		
 		
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="marketFooter.jsp" %>
 	
 	
 	<!--  삭제확인 알림창 -->

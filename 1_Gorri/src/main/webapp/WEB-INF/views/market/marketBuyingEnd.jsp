@@ -52,7 +52,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/top.jsp" %>
+	<%@ include file="marketTop.jsp" %>
 	<br>
 	<div class="div"> <!-- 제일 바깥쪽 여백 범위 위한 div -->
 		<div class="center-div">
@@ -68,6 +68,6 @@
 	</div>
 	<br><br><br>
 	
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="marketFooter.jsp" %>
 </body>
 </html>

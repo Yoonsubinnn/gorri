@@ -27,7 +27,7 @@ public class Product {
 	private Date productPostDate;
 	private Date productModifyDate;
 	private String productCategory;
-	private String productSellerID;
+	private String productSellerId;
 	
 	
 	

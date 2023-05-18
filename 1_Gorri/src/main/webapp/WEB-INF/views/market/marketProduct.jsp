@@ -11,7 +11,7 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<title>Gorri의 소중한 상품</title>
+<title>Gorri의 소중한 상품 : ${ p.productName }</title>
 <style>
 
 	/* 제일 겉에 마켓 상세 범위 */
@@ -140,7 +140,16 @@
 </head>
 
 				<!-- 작성중입니다. 로직을 위해.
-				현재 버전으로 서버 돌리면  이 페이지로 넘어가지진 않습니다. -->
+				현재 버전으로 서버 돌리면  이 페이지로 넘어가지진 않습니다. 
+				
+				
+				controller에서 다음을 받아옵니다.'
+				p : 상품 객체
+				page : 이전의 pagenation
+				seller : 판매자 객체
+				productInq : 상품 문의
+				productReview : 상품 리뷰
+				-->
 
 
 
@@ -148,7 +157,7 @@
 
 
 <body>
-	<%@ include file="../common/top.jsp" %>
+	<%@ include file="marketTop.jsp" %>
 	<br>
 	<div class="div"> <!-- 제일 바깥쪽 여백 범위 위한 div -->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->
@@ -156,29 +165,32 @@
 				<div class="sec1 sec1-img">
 					<div class="div-big">
 						<img class="img-big" src="assets/pic1.jpg">
+						<!-- 상품의 섬네일 코드 -->
 					</div>
 					<div class="div-mini">
 						<img class="img-mini" src="assets/pic1.jpg">
 						<img class="img-mini" src="assets/pic2.jpg">
 						<img class="img-mini" src="assets/pic3.jpg">
+						<!-- 상품의 다른 사진들 -->
 					</div>
 				</div>
 				<div class="sec1 info">
-					<div class="class0">달고 맛있는 키위~~ 함 드셔보셔요</div>
-					<div class="class1 left"><i class="bi bi-list"> </i>카테고리<i class="bi bi-chevron-compact-right"></i>요리</div>
-					<div class="class1 right"><a class="title">가격 : </a><a> 10,000원</a></div>
+					<div class="class0">${ p.productName }</div>
+					<div class="class1 left"><i class="bi bi-list"> </i>카테고리<i class="bi bi-chevron-compact-right"></i>${ p.productCategory }</div>
+					<div class="class1 right"><a class="title">가격 : </a><a> ${ p.productPrice }</a></div>
 					
-					<!-- 얘도 만약 내꺼라면 뜨지 않게 해야함. -->
-					<c:if test="${ !empty loginUser && loginUser.userId == product.productSellerID }">
+			<!-- 얘도 만약 내꺼라면 뜨지 않게 해야함. -->
+			<!-- 처음에 세션 주게하고, 여기서 판단하게 하자. 그게 맞다. -->
+					<c:if test="${ !empty loginUser && (loginUser.userId == product.productSellerId) }">
 					<div class="class1 right"><a class="title">수량 : </a><a><i class="bi bi-dash-square-fill"></i></a> 00 <a><i class="bi bi-plus-square-fill"></i></a></div>
 					</c:if>
 					
 					<div class="class1 right"><a class="title">등록일 : </a><a>2023-05-03</a></div>
 					<div class="class-btn">
-					<!-- 만약 페이지가 내 페이지라면, 수정하기/삭제하기 버튼이 나와야 하고, 상대라면, 구매하기 버튼만 나오게 한다. -->
+			<!-- 만약 페이지가 내 페이지라면, 수정하기/삭제하기 버튼이 나와야 하고, 상대라면, 구매하기 버튼만 나오게 한다. -->
 					
 					
-					<c:if test="${ !empty loginUser && loginUser.userId == product.productSellerID }">	<!-- 내 상품을 클릭한 경우. -->
+					<c:if test="${ !empty loginUser && loginUser.userId == product.productSellerId }">	<!-- 내 상품을 클릭한 경우. -->
 						<button class="button" onclick="location.href='#"><b>수정하기</b></button>
 						<button class="button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><b>삭제하기</b></button>
 					</c:if>
@@ -204,8 +216,8 @@
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 --> 
 			<div class="section2"> <!-- section 2: 판매자가 입력한 상품 상세정보 입력부분 -->
 				<div class="product-info"><i class="bi bi-caret-right-fill"></i> 상품정보</div>
-				<div class="product-text">여기에 판매자가 입력한 상품정보내역 출력
-				것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 것은 청춘의 끓는 피다 청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 희망의 놀이 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은
+				<div class="product-text">
+					${ p.productContent }
 				</div>
 			</div>
 		</div>	
@@ -219,8 +231,9 @@
 			<div class="section3"> <!-- 판매자 정보관련 -->
 				<div class="profile">
 					<div id="profile-img"><img id="pro-img" src="assets/no-img.png"></div>
-					<div id="id">닉네임</div>
+					<div id="id">${ seller.nickName }</div>
 					<div><button class="button" onclick="location.href='#"><b>미니홈</b></button></div>
+					<!-- 셀러의 미니홈으로 가는 버튼 -->
 				</div>
 			</div>
 		</div>		
@@ -239,15 +252,13 @@
 						<th class="title">문의내용</th>
 						<th class="date">작성일자</th>
 					</tr>
-					<!-- foreach로 5개만 보이게 반복 돌리며 페이지네이션 
-						근데 이거 aJax로 구현해야 할 것 같은데. -->
 						
-					<c:forEach items="#" var="#">
+					<c:forEach items="${ productInq }" var="proInq">
 						<tr>
-							<td>1</td>
-							<td>작성자1</td>
-							<td>어쩌고 저쩌고 궁금합니다.....</td>
-							<td>2023.00.00</td>
+							<td>${ proInq.inquireNo }</td>
+							<td>${ proInq.buyerId }</td>
+							<td>${ proInq.inquireContent }</td>
+							<td>${ proInq.inquirePostDate }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -281,13 +292,13 @@
 						<th class="date">작성일자</th>
 					</tr>
 					
-					<c:forEach items="#" var="#">
+					<c:forEach items="${ productReview }" var="proRev">
 						<tr>
-						<td>1</td>
-						<td>작성자1</td>
-						<td>너무너무 맛이ㅣㅆ어요~</td>
-						<td>2023.00.00</td>
-					</tr>
+							<td>${ proRev.reviewNo }</td>
+							<td>${ proRev.buyerId }</td>
+							<td>${ proRev.reviewContent }</td>
+							<td>${ proRev.reviewPostDate }</td>
+						</tr>
 					</c:forEach>
 					
 				</table>
@@ -296,7 +307,7 @@
 	</div>
 		
 		
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="marketFooter.jsp" %>
 	
 	
 	<!-- 삭제확인 알림 모달 -->

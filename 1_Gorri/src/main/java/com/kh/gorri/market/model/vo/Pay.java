@@ -29,7 +29,7 @@ public class Pay {
 	 */
 	private int paymentNo;
 	private Date paymentDate;
-	private int Quantity;
+	private int quantity;
 	private int paymentAmount;
 	private int productNo;
 	private String buyerId;

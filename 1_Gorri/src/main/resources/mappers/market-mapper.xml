@@ -7,15 +7,44 @@
 		select count(*)
 		from product
 	</select>
-	
 	<select id="marketMainPage" resultMap="ProductBoardResultSet">
 		select *
 		from product
 		order by product_no desc
 	</select>
 
-	<!-- 상품의 DB와 클래스를 위한 매핑입니다. -->
+	<!-- 상품의 상세 정보를 위한 매핑입니다. -->
+	<select id="getProductInfo" resultMap="ProductBoardResultSet">
+		select *
+		from product
+		where PRODUCT_NO = #{productId}
+	</select>
 
+	
+	<!-- 상품의 판매자 객체를 위한 매핑입니다. -->
+	<select id="getSellerInfo" resultMap="memberResultSet">
+		select *
+		from member
+		where USERS_ID = #{seller}
+	</select>
+
+	<!-- 상품의 모든 문의를 가져오는 메소드 -->
+	<select id="getProductInquire" resultMap="inquireResultSet">
+		select *
+		from inquire
+		where product_no = #{productId}
+	</select>
+
+	<!-- 상품의 모든 후기를 가져오는 메소드 -->
+	<select id="getProductReview" resultMap="reviewResultSet" >
+		select *
+		from review
+		where product_no = #{productId}
+	</select>
+
+
+		<!--resultMaps -->
+	<!-- Product. -->
 	<resultMap type="Product" id="ProductBoardResultSet">
 		<id column="PRODUCT_NO" property="productNo"/>
 		<result column="PRO_NAME" property="productName"/>
@@ -24,19 +53,69 @@
 		<result column="POSTDATE" property="productPostDate"/>
 		<result column="MODIFY_DATE" property="productModifyDate"/>
 		<result column="CATEGORY" property="productCategory"/>
-		<result column="SELLER_ID" property="productSellerID"/>
+		<result column="SELLER_ID" property="productSellerId"/>
 	</resultMap>
 
-	<!-- 상품의 상세 정보를 위한 매핑입니다. -->
-	<select id="getProductInfo">
-		select *
-		from product
-		where seller_id = ${productId}
-	</select>
+	<!-- Member -->
+	<resultMap type="Member" id="memberResultSet">
+		<id column="USERS_ID" property="userId"/>
+		<result column="PWD" property="userPwd"/>
+		<result column="PWD_Q" property="pwdQ"/>
+		<result column="PWD_HINT" property="pwdHint"/>
+		<result column="NAME" property="userName"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="WALLET" property="wallet"/>
+		<result column="ENROLLDATE" property="enrollDate"/>
+		<result column="PHONE" property="phone"/>
+		<result column="NICKNAME" property="nickName"/>
+		<result column="MYINTRO" property="myIntro"/>
+		<result column="STATUS" property="status"/>
+		<result column="IS_ADMIN" property="isAdmin"/>		
+	</resultMap>
+	
+	<!-- Inquire -->
+	<resultMap type="Inquire" id="inquireResultSet">
+		<id column="INQUIRE_NO" property="inquireNo"/>
+		<result column="INQUIRE_CONTENT" property="inquireContent"/>
+		<result column="POSTDATE" property="inquirePostDate"/>
+		<result column="BUYER_ID" property="buyerId"/>
+		<result column="PRODUCT_NO" property="productNo"/>
+	</resultMap>
 
-
-
-
-
-
+	<!-- Delivery -->
+	<resultMap type="Delivery" id="deliveryResultSet">
+		<id column="DELIVERY_NO" property="deliveryNo"/>
+		<result column="DELDATE" property="deliveryDate"/>
+		<result column="DEL_STATUS" property="deliveryStatus"/>
+		<result column="PAY_NO" property="paymentNo"/>
+	</resultMap>
+	
+	<!-- Review -->
+	<resultMap type="Review" id="reviewResultSet">
+		<id column="REVIEW_NO" property="reviewNo"/>
+		<result column="REVIEW_CONTENT" property="reviewContent"/>
+		<result column="POSTDATE" property="reviewPostDate"/>
+		<result column="BUYER_ID" property="buyerId"/>
+		<result column="PRODUCT_NO" property="productNo"/>
+	</resultMap>
+	
+	<!-- Pay -->
+	<resultMap type="Pay" id="payResultSet">
+		<id column="PAY_NO" property="paymentNo;"/>
+		<result column="PAYDATE" property="paymentDate;"/>
+		<result column="AMOUNT" property="quantity;"/>
+		<result column="PAYMENTAMOUNT" property="paymentAmount;"/>
+		<result column="PRODUCT_NO" property="productNo;"/>
+		<result column="BUYER_ID" property="buyerId;"/>
+	</resultMap>
+	
+	<!-- InquireReply -->
+	<resultMap type="InquireReply" id="inquireReplyResultSet">
+		<id column="REPLY_NO" property="replyNo;"/>
+		<result column="REPLY_CONTENT" property="replyContent;"/>
+		<result column="REPLY_WRITER" property="replyWriter;"/>
+		<result column="REPLY_CREATE_DATE" property="replyCreateDate;"/>
+		<result column="REPLY_MODIFY_DATE" property="replyModifyDate;"/>
+		<result column="INQUIRE_NO" property="inquireNo;"/>
+	</resultMap>
 </mapper>

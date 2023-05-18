@@ -6,7 +6,13 @@
    </settings>
    
    <typeAliases>
+		<typeAlias type="com.kh.gorri.market.model.vo.Delivery" alias="Delivery"/>
+		<typeAlias type="com.kh.gorri.market.model.vo.Inquire" alias="Inquire"/>
+		<typeAlias type="com.kh.gorri.market.model.vo.InquireReply" alias="InquireReply"/>
+		<typeAlias type="com.kh.gorri.market.model.vo.Pay" alias="Pay"/>
 		<typeAlias type="com.kh.gorri.market.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.kh.gorri.market.model.vo.Review" alias="Review"/>
+		<typeAlias type="com.kh.gorri.member.model.vo.Member" alias="Member"/>
 	</typeAliases>
    
 	<mappers>
