@@ -33,5 +33,10 @@ public class MarketServiceImpl implements MarketService {
 			// TODO Auto-generated method stub
 			return mDAO.marketMainPage(sqlSession,pi,i);
 		}
+
+		@Override
+		public int insertProduct(Product p) {
+			return mDAO.insertProduct(sqlSession, p);
+		}
 	
 }

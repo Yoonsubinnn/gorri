@@ -34,4 +34,8 @@ public class MarketDAO {
 		return (ArrayList)sqlSession.selectList("marketMapper.marketMainPage", i, rowBounds);
 	}
 
+	public int insertProduct(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("marketMapper.insertProudct", p);
+	}
+
 }

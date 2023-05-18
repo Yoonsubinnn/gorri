@@ -1,13 +1,22 @@
 package com.kh.gorri.market.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.gorri.common.Pagination;
 import com.kh.gorri.common.model.vo.PageInfo;
@@ -125,12 +134,68 @@ public class MarketController {
 		
 		
 	}
-	/*위에꺼 수정하면, 이거 날려버리세요*/
-//	@RequestMapping("MainPage.market")
-//	public String marketMainPage() {
-//		System.out.println("marketMainPage");
-//		return "marketMainPage";
+	
+	// 파일 저장소 지정
+	public String[] saveFile(MultipartFile file, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles";
+		File folder = new File(savePath);
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
+		//파일 이름 변경 형식 지정
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		int ranNum = (int)(Math.random()*100000);
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + ranNum + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		
+		// 변경된 파일 이름 저장
+		String renamePath = folder + "\\" + renameFileName;
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String[] returnArr = new String[2];
+		returnArr[0] = savePath;
+		returnArr[1] = renameFileName;
+		
+		return returnArr;
+	}
+	
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles";
+		
+		File f = new File(savePath + "\\" + fileName);
+		if(f.exists()) {
+			f.delete();
+		}
+	}
+	
+	
+	// 상품 등록
+	@PostMapping("insertProduct.market")
+	public String insertProduct(@ModelAttribute Product p, HttpSession session) {
+		
+		int result = mService.insertProduct(p);
+		
+		if(result > 0) {
+			return "redirect:MainPage.market";
+		} else {
+			throw new MarketException("상품 등록을 실패했습니다.");
+		}	
+	
+	}
+	
+//	@PostMapping("insertProduct.market")
+//	public String insertProduct(@ModelAttribute Member m, @ModelAttribute Product p, HttpServletRequest request, 
+//								@RequestParam("file") ArrayList<MultipartFile> files) {
+//		
 //	}
+	
 	
 	
 	

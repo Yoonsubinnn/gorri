@@ -79,12 +79,12 @@
 	<!-- 테두리 -->
 	<div class="border-line">
 		<div class="py-5 text-center">
-			<h2>게시글 작성</h2>
+			<h2>상품 등록</h2>
 		</div>
 		
 		<div class="mid-line"></div>
 		<br><br>
-			<form class="needs-validation" action="${ contextPath }" method="POST" encType="multipart/form-data" id="attmForm">
+			<form class="needs-validation" action="${ contextPath }/insertProduct.market" method="POST" encType="multipart/form-data" id="attmForm">
 					<div class="info_input">
 						<label for="boardTitle" class="form-label">제목</label>
 						<input type="text" id="title" class="info" placeholder="제목을 입력해주세요.">
