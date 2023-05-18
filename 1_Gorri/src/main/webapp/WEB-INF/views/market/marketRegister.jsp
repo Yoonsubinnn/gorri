@@ -87,19 +87,19 @@
 			<form class="needs-validation" action="${ contextPath }/insertProduct.market" method="POST" encType="multipart/form-data" id="attmForm">
 					<div class="info_input">
 						<label for="boardTitle" class="form-label">제목</label>
-						<input type="text" id="title" class="info" placeholder="제목을 입력해주세요.">
+						<input type="text" id="title" class="info" name="productName" placeholder="제목을 입력해주세요.">
 					</div>
 					<div class="info_input">
 						<div style="display: inline-flex; width: 100%;">
-							<input type="text" class="info" placeholder="금액 |" style="width: 545px;">
-							<select class="info" style="width: 125px; margin-left:20px">
-								<option value="category">카테고리</option>
-								<option value="art">예술</option>
-								<option value="workout">운동</option>
-								<option value="food">음식</option>
-								<option value="travel">여행</option>
-								<option value="creation">창작</option>
-								<option value="development">자기계발</option>
+							<input type="text" class="info" placeholder="금액 |" name="productPrice" style="width: 545px;">
+							<select class="info" style="width: 125px; margin-left:20px" name="productCategory">
+								<option value="categoryㅂ">카테고리</option>
+								<option value="예술">예술</option>
+								<option value="운동">운동</option>
+								<option value="음식">음식</option>
+								<option value="여행">여행</option>
+								<option value="창작">창작</option>
+								<option value="자기계발">자기계발</option>
 							</select>
 						</div>
 					</div>
@@ -109,13 +109,13 @@
 					</div>
 					<div class="info_input">
 						<label class="form-label">내용</label>
-						<textarea id="content" class="info" placeholder="내용을 입력해주세요."></textarea>
+						<textarea id="content" class="info" name="productContent" placeholder="내용을 입력해주세요."></textarea>
 					</div>
 					<br><br><br>
 					 <div style="text-align: center;">
 						  <button class="button" style="top-margin:50px;"><b>등록</b></button>
 						  &nbsp;&nbsp;&nbsp;&nbsp;
-						  <button class="button" style="top-margin:50px;"><b>취소</b></button>
+						  <button class="button" style="top-margin:50px;" type="button" onclick="javascript:history.back();"><b>취소</b></button>
 					</div>
 					
 					<br><br><br>

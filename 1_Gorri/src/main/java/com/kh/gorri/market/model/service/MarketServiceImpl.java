@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.gorri.common.model.vo.Attachment;
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.market.model.dao.MarketDAO;
 import com.kh.gorri.market.model.vo.Product;
@@ -36,7 +37,11 @@ public class MarketServiceImpl implements MarketService {
 
 		@Override
 		public int insertProduct(Product p) {
-			return mDAO.insertProduct(sqlSession, p);
+			return mDAO.insertproduct(sqlSession, p);
 		}
+
+
+
+
 	
 }

@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.gorri.common.Pagination;
+import com.kh.gorri.common.model.vo.Attachment;
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.market.model.exception.MarketException;
 import com.kh.gorri.market.model.service.MarketService;
 import com.kh.gorri.market.model.vo.Product;
+import com.kh.gorri.member.model.vo.Member;
 
 @Controller
 public class MarketController {
@@ -178,8 +180,32 @@ public class MarketController {
 	
 	// 상품 등록
 	@PostMapping("insertProduct.market")
-	public String insertProduct(@ModelAttribute Product p, HttpSession session) {
+	public String insertProduct(@ModelAttribute Product p, HttpSession session,HttpServletRequest request, @RequestParam("file") ArrayList<MultipartFile> files) {
 		
+		ArrayList<Attachment> list = new ArrayList<>();
+		for(int i = 0; i < files.size(); i ++) {
+			MultipartFile upload = files.get(i);
+			if(upload != null && !upload.isEmpty()) {
+				String[] returnArr = saveFile(upload, request);
+				if(returnArr[1] != null) {
+					Attachment a = new Attachment();
+					
+					a.setSavePath(returnArr[0]);
+					a.setOriginalName(upload.getOriginalFilename());
+					a.setRenameName(returnArr[1]);
+					
+					list.add(a);
+				}
+			}
+		}
+		
+		
+		
+		
+		
+		String id = ((Member)session.getAttribute("loginUser")).getUserId();
+		p.setProductSellerId(id);
+		System.out.println("카테고리 :"+p.getProductCategory());
 		int result = mService.insertProduct(p);
 		
 		if(result > 0) {
@@ -190,14 +216,40 @@ public class MarketController {
 	
 	}
 	
-//	@PostMapping("insertProduct.market")
-//	public String insertProduct(@ModelAttribute Member m, @ModelAttribute Product p, HttpServletRequest request, 
-//								@RequestParam("file") ArrayList<MultipartFile> files) {
-//		
-//	}
-	
-	
-	
+	// 상품 사진 등록
+	@PostMapping("insertProductattm.market")
+	public String insertProudctattm(@ModelAttribute Product p,HttpServletRequest request, @RequestParam("file") ArrayList<MultipartFile> files
+								) {
+		
+		String id = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+		p.setProductSellerId(id);
+		
+		ArrayList<Attachment> list = new ArrayList<>();
+		for(int i = 0; i < files.size(); i ++) {
+			MultipartFile upload = files.get(i);
+			if(upload != null && !upload.isEmpty()) {
+				String[] returnArr = saveFile(upload, request);
+				if(returnArr[1] != null) {
+					Attachment a = new Attachment();
+					
+					a.setSavePath(returnArr[0]);
+					a.setOriginalName(upload.getOriginalFilename());
+					a.setRenameName(returnArr[1]);
+					
+					list.add(a);
+				}
+			}
+		}
+		
+		int result = 0;
+		result = mService.insertProudctattm(list);
+		if(result > 0) {
+			return "redirect:MainPage.market";
+		} else {
+			throw new MarketException("상품등록을 실패했습니다.");
+		}
+		
+	}
 	
 	
 	

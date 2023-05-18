@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.market.model.vo.Product;
+import com.kh.gorri.common.model.vo.Attachment;
 
 public interface MarketService {
 
@@ -12,5 +13,7 @@ public interface MarketService {
 	ArrayList<Product> marketMainPage(PageInfo pi, int i);
 
 	int insertProduct(Product p);
+
+
 
 }

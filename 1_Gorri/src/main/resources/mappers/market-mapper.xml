@@ -23,15 +23,14 @@
 		<result column="POSTDATE" property="productPostDate"/>
 		<result column="MODIFY_DATE" property="productModifyDate"/>
 		<result column="CATEGORY" property="productCategory"/>
-		<result column="SELLER_ID" property="productSellerID"/>
+		<result column="SELLER_ID" property="productSellerId"/>
 	</resultMap>
 
-	<insert id="insertProudct">
+	
+	<insert id="insertProduct">
 		insert into product
-		values(seq_product.nextval, #{productName}, #{productContent}, 
-			   #{productPrice}, default, sysdate, #{prodcutCategory}, #{productSellerID})
+		values(seq_product.nextval, #{productName}, #{productContent}, #{productPrice}, sysdate, sysdate, #{productCategory}, #{productSellerId})
 	</insert>
-
 
 
 

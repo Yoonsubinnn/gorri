@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.gorri.common.model.vo.Attachment;
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.market.model.vo.Product;
 	/**
@@ -34,8 +35,9 @@ public class MarketDAO {
 		return (ArrayList)sqlSession.selectList("marketMapper.marketMainPage", i, rowBounds);
 	}
 
-	public int insertProduct(SqlSessionTemplate sqlSession, Product p) {
-		return sqlSession.insert("marketMapper.insertProudct", p);
+	public int insertproduct(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("marketMapper.insertProduct",p);
 	}
+
 
 }
