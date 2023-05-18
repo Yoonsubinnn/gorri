@@ -199,6 +199,14 @@ public class MarketController {
 			}
 		}
 		
+		// list를 attachment table에 insert
+		
+		
+		// 잘되면 p mapper table에 등록 => result = 1
+		
+		// 
+		
+		
 		
 		
 		
