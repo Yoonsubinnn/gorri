@@ -133,8 +133,25 @@
 		margin-top: 30px; margin-bottom: 30px;
 		padding-top: 20px;
 		border-top: 1px solid lightgray;
-		}
+	}
 	
+	/* 문의, 후기 게시판*/
+	.rows{
+	cursor: default
+	}
+	
+	.rows:hover {
+    cursor: pointer;
+    background-color: lightgray;
+  	}
+
+ 	 /* Style when the table row is clicked */
+  	.rows:active {
+    background-color: darkgray;
+    color: white;
+ 	}
+ 	
+ 	.rows:`
 	
 </style>
 </head>
@@ -150,12 +167,6 @@
 				productInq : 상품 문의
 				productReview : 상품 리뷰
 				-->
-
-
-
-
-
-
 <body>
 	<%@ include file="marketTop.jsp" %>
 	<br>
@@ -189,7 +200,6 @@
 					<div class="class-btn">
 			<!-- 만약 페이지가 내 페이지라면, 수정하기/삭제하기 버튼이 나와야 하고, 상대라면, 구매하기 버튼만 나오게 한다. -->
 					
-					
 					<c:if test="${ !empty loginUser && loginUser.userId == p.productSellerId }">	<!-- 내 상품을 클릭한 경우. -->
 						<button class="button" onclick="location.href='#"><b>수정하기</b></button>
 						<button class="button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><b>삭제하기</b></button>
@@ -206,13 +216,9 @@
 				</div>
 			</div>
 		</div>
-			
 		<div class="line"></div>
 			
-			
-		<!-- 상품정보 :
-			상품의 이름,
-			상품의 설명 들어감-->
+		<!-- 상품정보 :상품의 이름,상품의 설명 들어감-->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 --> 
 			<div class="section2"> <!-- section 2: 판매자가 입력한 상품 상세정보 입력부분 -->
 				<div class="product-info"><i class="bi bi-caret-right-fill"></i> 상품정보</div>
@@ -224,27 +230,30 @@
 			
 		<div class="line"></div>
 			
-			
-			
-		<!-- 판매자의 정보. 마이홈 링크 -->
-		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->	
-			<div class="section3"> <!-- 판매자 정보관련 -->
-				<div class="profile">
-					<div id="profile-img"><img id="pro-img" src="assets/no-img.png"></div>
-					<div id="id">${ seller.nickName }</div>
-					<div><button class="button" onclick="location.href='#"><b>미니홈</b></button></div>
-					<!-- 셀러의 미니홈으로 가는 버튼 -->
-				</div>
-			</div>
-		</div>		
-			
-		<div class="line"></div>
-		
+		<!-- 판매자의 정보. 마이홈 링크 : 제거함-->
+<!-- 		<div class="center-div"> 얘네는 다 수직정렬 되야함	 -->
+<!-- 			<div class="section3"> 판매자 정보관련 -->
+<!-- 				<div class="profile"> -->
+<!-- 					<div id="profile-img"><img id="pro-img" src="assets/no-img.png"></div> -->
+<%-- 					<div id="id">${ seller.nickName }</div> --%>
+<!-- 					<div><button class="button" onclick="location.href='#"><b>미니홈</b></button></div> -->
+<!-- 					셀러의 미니홈으로 가는 버튼 -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div>			 -->
+<!-- 		<div class="line"></div> -->
 		
 		<!-- 문의내역 -->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->
 			<div class="section4">
 				<div class="product-info"><i class="bi bi-pencil-fill"></i> 상품 문의</div>
+				<a href="${contextPath}/InquireBoard.market?productId=${p.productNo}" class="btn btn-primary">문의게시판으로 이동</a>
+				
+				<!-- 자기 상품 아니고, 로그인 했을 시에 문의등록 가능하게 하는 버튼 -->
+				<c:if test="${ empty loginUser || loginUser.userId != p.productSellerId }">
+					<a href="${contextPath}/InquireBoard.market?productId=${p.productNo}" class="btn btn-primary">문의 등록</a>
+				</c:if>
+				
 				<table>
 					<tr class="top">
 						<th class="no">번호</th>
@@ -254,7 +263,8 @@
 					</tr>
 						
 					<c:forEach items="${ productInq }" var="proInq">
-						<tr>
+<%-- 						<tr class="rows" onclick="location.href='${ contextPath }/ProductInquire.market?productId='+${ proInq.productNo }+'&inquireNo='+${ proInq.inquireNo }"> --%>
+						<tr class="rows" onclick="location.href='${contextPath}/ProductInquire.market?productId=${proInq.productNo}&inquireNo=${proInq.inquireNo}'">						
 							<td>${ proInq.inquireNo }</td>
 							<td>${ proInq.buyerId }</td>
 							<td>${ proInq.inquireContent }</td>
@@ -264,14 +274,14 @@
 				</table>
 				
 				
-				<!-- 문의등록 버튼, 이 친구는 로그인을 했을 때만 존재하도록 -->
-				<c:if test="#" var="#">
-					<div class="reply re-input">
-						<div class="re-id">작성자ID</div> <!-- 로그인한 사용자 프로필 주소로 변경하기.. -->
-						<div class="re-text"><input class="re-text" type="text" placeholder="내용을 입력하세요."></div>
-						<div class="re-submit"><button type="submit" class="button2">문의등록</button></div>
-					</div>
-				</c:if>
+				<!-- 문의등록 버튼, 이 친구는 로그인을 했을 때만 존재하도록 : 굳이?-->
+<%-- 				<c:if test="#" var="#"> --%>
+<!-- 					<div class="reply re-input"> -->
+<!-- 						<div class="re-id">작성자ID</div> 로그인한 사용자 프로필 주소로 변경하기.. -->
+<!-- 						<div class="re-text"><input class="re-text" type="text" placeholder="내용을 입력하세요."></div> -->
+<!-- 						<div class="re-submit"><button type="submit" class="button2">문의등록</button></div> -->
+<!-- 					</div> -->
+<%-- 				</c:if> --%>
 				
 			</div>
 		</div>		
@@ -284,6 +294,8 @@
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->	
 			<div class="section5">
 				<div class="product-info"><i class="bi bi-pencil-fill"></i> 구매 후기</div>
+				<a href="${contextPath}/ReviewBoard.market?productId=${p.productNo}" class="btn btn-primary">리뷰게시판으로 이동</a>
+				
 				<table>
 					<tr class="top">
 						<th class="no">번호</th>
@@ -293,7 +305,7 @@
 					</tr>
 					
 					<c:forEach items="${ productReview }" var="proRev">
-						<tr>
+						<tr class="rows" onclick="location.href='${contextPath}/ProductReview.market?productId=${proRev.productNo}&reviewNo=${proRev.reviewNo}'">
 							<td>${ proRev.reviewNo }</td>
 							<td>${ proRev.buyerId }</td>
 							<td>${ proRev.reviewContent }</td>

@@ -77,5 +77,25 @@ public class MarketServiceImpl implements MarketService {
 			// TODO Auto-generated method stub
 			return 0;
 		}
+		@Override
+		public ArrayList<Inquire> ProductAllInquire(PageInfo pi, Integer productId) {
+			// TODO Auto-generated method stub
+			return mDAO.ProductAllInquire(sqlSession, pi, productId);
+		}
+		@Override
+		public ArrayList<Review> ProductAllReview(PageInfo pi, Integer productId) {
+			// TODO Auto-generated method stub
+			return mDAO.ProductAllReview(sqlSession, pi, productId);
+		}
+		@Override
+		public Review ProductOneReview(Integer productId, Integer reviewNo) {
+			// TODO Auto-generated method stub
+			return mDAO.ProductOneReview(sqlSession, productId, reviewNo);
+		}
+		@Override
+		public Inquire ProductOneInquire(Integer productId, Integer inquireNo) {
+			// TODO Auto-generated method stub
+			return mDAO.ProductOneInquire(sqlSession, productId, inquireNo);
+		}
 	
 }

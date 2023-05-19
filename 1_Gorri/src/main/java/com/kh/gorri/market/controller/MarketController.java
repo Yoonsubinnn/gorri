@@ -44,8 +44,7 @@ public class MarketController {
 	public String marketMainPage(@RequestParam(value = "page", required = false) Integer currentPage,
 								 @RequestParam(value = "category", required = false) String category,
 								 @RequestParam(value = "search", required = false) String search,
-								 Model model
-								) {
+								 Model model) {
 	
 		System.out.println("marketMainPage 작동");
 		
@@ -78,6 +77,118 @@ public class MarketController {
 			throw new MarketException("URL 잘못 입력 : 카테고리에" + category + "라고 입력했습니다. 지정된 카테고리로만 검색 가능합니다.");
 		}
 	}
+	/**
+	 * 상품의 모든 문의를 받아오는 메소드, 즉 문의 페이지를 나타낸다.
+	 * 
+	 * @param currentPage 페이지네이션을 위한 현재 페이지
+	 * @param productId 상품 id
+	 * @param inquireNo 문의 번호
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("InquireBoard.market")
+	public String ProductAllInquire(@RequestParam(value = "page", required = false) Integer currentPage,
+								 @RequestParam(value = "productId") Integer productId,
+								 Model model) {
+		
+		System.out.println("ProductAllInquire 작동");
+		if(currentPage == null) {
+			currentPage = 1;
+		}
+		
+		int listCount = mService.getListCount(1);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 9);
+		System.out.println("listCount: "+ listCount);
+		System.out.println("pi: "+ pi);
+		
+	
+		ArrayList<Inquire> list = mService.ProductAllInquire(pi, productId);		
+		if(list !=null) {
+			//잘 가져왔을 때.
+			model.addAttribute("pi", pi);
+			model.addAttribute("list", list);
+			return "ProductInquire";
+		} else {
+			throw new MarketException("게시글 조회 실패");
+		}
+	}
+	
+	/**
+	 * 상품의 모든 리뷰를 받아오는 메소드
+	 * @param currentPage
+	 * @param productId
+	 * @param reviewNo
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("ReviewBoard.market")
+	public String ProductAllReview(@RequestParam(value = "page", required = false) Integer currentPage,
+			@RequestParam(value = "productId") Integer productId,
+			Model model) {
+		
+		System.out.println("ProductAllReview 작동");
+		if(currentPage == null) {
+			currentPage = 1;
+		}
+		
+		int listCount = mService.getListCount(1);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 9);
+		System.out.println("listCount: "+ listCount);
+		System.out.println("pi: "+ pi);
+		
+		
+		ArrayList<Review> list = mService.ProductAllReview(pi, productId);		
+		if(list !=null) {
+			//잘 가져왔을 때.
+			model.addAttribute("pi", pi);
+			model.addAttribute("list", list);
+			return "ProductReview";
+		} else {
+			throw new MarketException("게시글 조회 실패");
+		}
+	}
+	
+	/**
+	 * 어떤 상품에 달린 한 리뷰의 상세페이지로 이동 
+	 * @param productId
+	 * @param reviewNo
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("ProductReview.market")
+	public ModelAndView ProductOneReview(@RequestParam(value = "productId") Integer productId,
+								   		 @RequestParam("reviewNo") Integer reviewNo,
+								   		 ModelAndView mv) {
+		System.out.println("ProductReview 작동");
+		Review r = mService.ProductOneReview(productId, reviewNo);
+		
+		if(r != null) {
+			mv.addObject("r", r);
+			mv.setViewName("Review");
+			return mv;
+		} else {
+			throw new MarketException("리뷰 상세보기를 실패하였습니다.");
+		}
+	}
+	
+	
+	@RequestMapping("ProductInquire.market")
+	public ModelAndView ProductOneInquire(@RequestParam(value = "productId") Integer productId,
+			@RequestParam("InquireNo") Integer inquireNo,
+			ModelAndView mv) {
+		System.out.println("ProductInquire 작동");
+		Inquire r = mService.ProductOneInquire(productId, inquireNo);
+		
+		if(r != null) {
+			mv.addObject("r", r);
+			mv.setViewName("Inquire");
+			return mv;
+		} else {
+			throw new MarketException("리뷰 상세보기를 실패하였습니다.");
+		}
+	}
+	
+	
 	
 	
 	

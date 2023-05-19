@@ -35,7 +35,7 @@ public class MarketDAO {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		//3개의 값을 넘겨주기 위해 만든 Map
+		//2개의 값을 넘겨주기 위해 만든 Map
 		Map<String, Object> parameterMap = new HashMap<>();
 		parameterMap.put("category", category);
 		parameterMap.put("search", search);
@@ -79,6 +79,37 @@ public class MarketDAO {
 	public int insertproduct(SqlSessionTemplate sqlSession, Product p) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public ArrayList<Inquire> ProductAllInquire(SqlSessionTemplate sqlSession, PageInfo pi, 
+											 Integer productId) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("marketMapper.ProductAllInquire", productId, rowBounds);
+	}
+
+	public ArrayList<Review> ProductAllReview(SqlSessionTemplate sqlSession, PageInfo pi, 
+										   Integer productId) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("marketMapper.ProductAllReview", productId, rowBounds);
+	}
+
+	public Review ProductOneReview(SqlSessionTemplate sqlSession, Integer productId, Integer reviewNo) {
+		// TODO Auto-generated method stub
+		Map<String, Object> parameterMap = new HashMap<>();
+		parameterMap.put("productId", productId);
+		parameterMap.put("reviewNo", reviewNo);
+		return sqlSession.selectOne("marketMapper.ProductOneReview", parameterMap);
+	}
+
+	public Inquire ProductOneInquire(SqlSessionTemplate sqlSession, Integer productId, Integer inquireNo) {
+		// TODO Auto-generated method stub
+		Map<String, Object> parameterMap = new HashMap<>();
+		parameterMap.put("productId", productId);
+		parameterMap.put("inquireNo", inquireNo);
+		return sqlSession.selectOne("marketMapper.ProductOneInquire", parameterMap);
 	}
 
 }

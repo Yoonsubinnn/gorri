@@ -30,14 +30,14 @@
 	</select>
 
 	<!-- 상품의 모든 문의를 가져오는 메소드 -->
-	<select id="getProductInquire" resultMap="inquireResultSet">
+	<select id="ProductAllInquire" resultMap="inquireResultSet">
 		select *
 		from inquire
 		where product_no = #{productId}
 	</select>
 
 	<!-- 상품의 모든 후기를 가져오는 메소드 -->
-	<select id="getProductReview" resultMap="reviewResultSet" >
+	<select id="ProductAllReview" resultMap="reviewResultSet" >
 		select *
 		from review
 		where product_no = #{productId}
@@ -47,6 +47,18 @@
 		insert into product
 		values(seq_product.nextval, #{productName}, #{productContent}, #{productPrice}, sysdate, sysdate, #{productCategory}, #{productSellerId})
 	</insert>
+	
+	<select id="ProductOneReview" resultMap="reviewResultSet">
+		select *
+		from review
+		where product_no = #{productId} and review_no = #{reviewNo}
+	</select>
+	
+	<select id="ProductOneInquire" resultMap="inquireResultSet">
+		select *
+		from inquire
+		where product_no = #{productId} and inquire_no = #{inquireNo}
+	</select>
 	
 	
 

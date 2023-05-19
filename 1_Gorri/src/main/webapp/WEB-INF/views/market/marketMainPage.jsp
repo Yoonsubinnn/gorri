@@ -145,28 +145,7 @@
   		}
   	</script>
   	
-  	<!-- 카테고리 선택 별로 선택하기. 
-  	애초에 마켓 메인페이지는, 전체 카테고리나 다름없잖아?
-  	
-  	클릭하면 그에 맞게 넘어가게끔 하도록 하자?
-  	
-  	마켓메인페이지로 넘어가는 것과 같지만, 
-  	foreach문 반복에서, 조건에 해당하지 않는 것만 나오도록 하고,(if로 걸러)
-  	또, 그것을 쿼리스트링에 표현할 수 있을까?
-  	
-  	굳이 쿼리스트링으로 가져올 수 있을까?
-  	아니 쿼리스트링으로 가져갈 수는 있지. 그리고 그렇게 하고, 메인으로는 넘어가게 하고, 메인으로 넘어가는 로직만 따로 잘 짜면 되잖아.
-  	
-  	
-  	-->
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-
+  	<!-- 검색창 아래 부분. -->
 	<div class="container">
 		<div class="row align-items-center">
            <div class="dropdown">
@@ -197,44 +176,7 @@
 	<!-- 드롭다운을 위해 회원 순서대로 정렬하려고 하는데, 버튼을 누르면 시간순 정렬, 이름 순 정렬.
 			정렬은 ajax로 하자. -->
 
-
-
-<!-- 게시판 하나만 빼기. 이 안에서 foreach 돌려라/ 
-			list가 넘어오는 아이디라 가정하겠다. -->
-
-<%-- 	<c:forEach items="${ list }" var="a" > --%>
-<!-- 	<div class="prod"style="text-align:center; margin:30px; margin-left:auto; margin-right:auto;" > -->
-<!-- 		<table class="bigGroupTable" style="border-color:white">	 -->
-<!-- 			<tr> -->
-<!-- 				<td> -->
-<!-- 					<table class="smGroupTable"  style="border:2px solid #ffab00; border-radius:2em;"> -->
-<!-- 						<tr> -->
-<!-- 							<td class="groupPic"><img src="#" class="gThumnail"></td> -->
-<!-- 								이미지 src바꿔야함. -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<%-- 							<td class="groupTitle">${ a.productName }</td> --%>
-<!-- 							페이지로 넘어갈 때, 그것의 속성을 가지고 넘어가야 합니다. -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<%-- 							<td class="groupIntro">${ a.productPrice }</td> --%>
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
-<!-- 								태그가 나오도록 수정하세요 -->
-<!-- 								<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
-<!-- 								<span>10</span> -->
-<!-- 								태그 나오게 수정. 완성되면 위 삭제하셈 -->
-<%-- 								<span class="badge bg-secondary">${ a.productContent }</span> --%>
-<!-- 							</td>  -->
-<!-- 						</tr> -->
-<!-- 					</table> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
-<!-- 		</table> -->
-<!-- 	</div> -->
-<%-- 	</c:forEach> --%>
-	
+	<!-- 게시판-->	
 	<div style="text-align:center; margin:30px; margin-left:auto; margin-right:auto;">
 		<c:forEach items="${ list }" var="a" >			
 		<table class="bigGroupTable" style="border-color:white">	
@@ -269,19 +211,6 @@
 
  <!-- 4. 페이지네이션-->
 	
-<!-- 	<nav aria-label="Page navigation example"> -->
-<!-- 	  <ul class="pagination justify-content-center"> -->
-<!-- 	    <li class="page-item disabled"> -->
-<!-- 	      <a class="page-link">Previous</a> -->
-<!-- 	    </li> -->
-<!-- 	    <li class="page-item"><a class="page-link" href="#">1</a></li> -->
-<!-- 	    <li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!-- 	    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!-- 	    <li class="page-item"> -->
-<!-- 	      <a class="page-link" href="#">Next</a> -->
-<!-- 	    </li> -->
-<!-- 	  </ul> -->
-<!-- 	</nav> -->
  		<nav aria-label="Standard pagination example" style="float: right;">
         	<ul class="pagination">
 	            <li class="page-item">

@@ -27,5 +27,13 @@ public interface MarketService {
 
 	int insertProudctattm(ArrayList<Attachment> list);
 
+	ArrayList<Inquire> ProductAllInquire(PageInfo pi, Integer productId);
+
+	ArrayList<Review> ProductAllReview(PageInfo pi, Integer productId);
+
+	Review ProductOneReview(Integer productId, Integer reviewNo);
+
+	Inquire ProductOneInquire(Integer productId, Integer inquireNo);
+
 }
 
