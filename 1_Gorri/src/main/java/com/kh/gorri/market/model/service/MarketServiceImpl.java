@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.gorri.common.model.vo.PageInfo;
+import com.kh.gorri.group.model.vo.Attachment;
 import com.kh.gorri.market.model.dao.MarketDAO;
 import com.kh.gorri.market.model.vo.Inquire;
 import com.kh.gorri.market.model.vo.Product;
@@ -35,9 +36,10 @@ public class MarketServiceImpl implements MarketService {
 		 * 마켓 메인페이지로 가는 서비스
 		 */
 		@Override
-		public ArrayList<Product> marketMainPage(PageInfo pi, int i) {
-			// TODO Auto-generated method stub
-			return mDAO.marketMainPage(sqlSession,pi,i);
+		public ArrayList<Product> marketMainPage(PageInfo pi, String category, String search) {
+			/*어느 선택을 할 것인지도 보내야 합니다.*/
+			
+			return mDAO.marketMainPage(sqlSession, pi, category, search);
 		}
 
 		/**
@@ -64,6 +66,16 @@ public class MarketServiceImpl implements MarketService {
 		public ArrayList<Review> getProductReview(int productId) {
 			// TODO Auto-generated method stub
 			return mDAO.getProductReview(sqlSession, productId);
+		}
+		
+		@Override
+		public int insertProduct(Product p) {
+			return mDAO.insertproduct(sqlSession, p);
+		}
+		@Override
+		public int insertProudctattm(ArrayList<Attachment> list) {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 	
 }

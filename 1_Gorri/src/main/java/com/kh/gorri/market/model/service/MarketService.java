@@ -3,6 +3,7 @@ package com.kh.gorri.market.model.service;
 import java.util.ArrayList;
 
 import com.kh.gorri.common.model.vo.PageInfo;
+import com.kh.gorri.group.model.vo.Attachment;
 import com.kh.gorri.market.model.vo.Inquire;
 import com.kh.gorri.market.model.vo.Product;
 import com.kh.gorri.market.model.vo.Review;
@@ -12,7 +13,7 @@ public interface MarketService {
 
 	int getListCount(int i);
 
-	ArrayList<Product> marketMainPage(PageInfo pi, int i);
+	ArrayList<Product> marketMainPage(PageInfo pi, String category, String search);
 
 	Product getProductInfo(int bId);
 
@@ -21,6 +22,10 @@ public interface MarketService {
 	ArrayList<Inquire> getProductInquire(int productId);
 
 	ArrayList<Review> getProductReview(int productId);
+	
+	int insertProduct(Product p);
+
+	int insertProudctattm(ArrayList<Attachment> list);
 
 }
 

@@ -1,6 +1,8 @@
 package com.kh.gorri.market.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,10 +31,16 @@ public class MarketDAO {
 		return sqlSession.selectOne("marketMapper.getListCount", i);
 	}
 
-	public ArrayList<Product> marketMainPage(SqlSessionTemplate sqlSession, PageInfo pi, int i) {
+	public ArrayList<Product> marketMainPage(SqlSessionTemplate sqlSession, PageInfo pi,  String category, String search) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("marketMapper.marketMainPage", i, rowBounds);
+		
+		//3개의 값을 넘겨주기 위해 만든 Map
+		Map<String, Object> parameterMap = new HashMap<>();
+		parameterMap.put("category", category);
+		parameterMap.put("search", search);
+		
+		return (ArrayList)sqlSession.selectList("marketMapper.marketMainPage", parameterMap, rowBounds);
 	}
 	
 	/**
@@ -66,6 +74,11 @@ public class MarketDAO {
 	public ArrayList<Review> getProductReview(SqlSessionTemplate sqlSession, int productId) {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("marketMapper.getProductReview", productId);
+	}
+
+	public int insertproduct(SqlSessionTemplate sqlSession, Product p) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

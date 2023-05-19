@@ -17,7 +17,7 @@
 /* 	.groupInt{heigt:100px;} */
 	
 	.bigGroupTable{
-		width:1000px;
+		width:800px;
 		height:550px;
 		
 	}
@@ -84,6 +84,17 @@
 	a.groupLink:hover{
 		color:#ffab00
 	}
+	table{
+		margin:0 auto; text-align: center; width: 90%;
+		border-top: 1.5px solid darkgray; border-bottom: 1.5px solid darkgray;
+		}
+	
+	.category{margin-left:100px; margin-right: 100px;}
+	.categorys{width: 70px; cursor: pointer;  padding-top: 25px; padding-bottom: 20px;}
+  	.category-name{font-size: 13px; text-decoration: none; color: black;} /* 카테고리 항목 글자크기 */
+  	.fa-solid{font-size: 25px;} /* 아이콘 크기 */
+  	.categorys:hover{color: #ffaa00;}
+  	.categorys:active {color: #ff0044;}
 </style>
 </head>
 <body>
@@ -91,7 +102,70 @@
 <!-- 조각코드 -->
 	<%@include file = "marketTop.jsp" %>
 	<%@include file = "marketSearch.jsp" %>
-	<%@include file = "marketCategory.jsp" %>
+	<!-- 검색 조각코드
+		여기서도 어디로 넘어가는지 정해져야 합니다.
+		검색한 이름을 통해서도 넘어가게 합시다. : search로 했고, marketMainPage가 requestparam으로 받게함.
+		얘도 ajax 쓰지 말고 그냥 넘기는걸로 하자.-->
+		
+	
+
+	<!-- 카테고리 조각코드 시작 -->
+	<br>
+	<div class="category">
+		<table>
+			<tr>
+				<td class="margin"></td>
+				<td class="categorys" onclick=""><i class="fa-solid fa-paintbrush"></i><br><a class="category-name">예술</a></td>
+				<td class="categorys"><i class="fa-solid fa-baseball"></i><br><a class="category-name">운동</a></td>
+				<td class="categorys"><i class="fa-solid fa-utensils"></i><br><a class="category-name">음식</a></td>
+				<td class="categorys"><i class="fa-solid fa-suitcase-rolling"></i><br><a class="category-name">여행</a></td>
+				<td class="categorys"><i class="fa-solid fa-pencil"></i><br><a class="category-name">창작</a></td>
+				<td class="categorys"><i class="fa-solid fa-graduation-cap"></i><br><a class="category-name">자기계발</a></td>
+				<td class="margin"></td>
+			</tr>
+		</table>
+	</div>
+  	<br>
+  	<!-- 카테고리 조각코드 종료 -->
+  	<script type="text/javascript">
+  		/*카테고리별 선택 알고리즘. 
+  		그리고 클릭 시, 각 카테고리의 text에 맞게 어디로 링크 넘어가게끔. */
+  		window.onload =() => {
+  			const categories = document.querySelectorAll("td.categorys");
+  			const contextPath = "${ pageContext.servletContext.contextPath }";
+//   			console.log("정상작동 확인");
+//   			console.log("categories");
+//   			console.log("contextPath");
+  			 categories.forEach(function(category) {
+  			      category.addEventListener("click", function() {
+  			        let url = "/MainPage.market?category=" + encodeURIComponent(this.innerText.trim());
+  			        window.location.href = contextPath + url;
+  			      });
+  			 });
+  		}
+  	</script>
+  	
+  	<!-- 카테고리 선택 별로 선택하기. 
+  	애초에 마켓 메인페이지는, 전체 카테고리나 다름없잖아?
+  	
+  	클릭하면 그에 맞게 넘어가게끔 하도록 하자?
+  	
+  	마켓메인페이지로 넘어가는 것과 같지만, 
+  	foreach문 반복에서, 조건에 해당하지 않는 것만 나오도록 하고,(if로 걸러)
+  	또, 그것을 쿼리스트링에 표현할 수 있을까?
+  	
+  	굳이 쿼리스트링으로 가져올 수 있을까?
+  	아니 쿼리스트링으로 가져갈 수는 있지. 그리고 그렇게 하고, 메인으로는 넘어가게 하고, 메인으로 넘어가는 로직만 따로 잘 짜면 되잖아.
+  	
+  	
+  	-->
+  	
+  	
+  	
+  	
+  	
+  	
+  	
 
 	<div class="container">
 		<div class="row align-items-center">
@@ -120,6 +194,8 @@
 		</div>
 	</div>
 
+	<!-- 드롭다운을 위해 회원 순서대로 정렬하려고 하는데, 버튼을 누르면 시간순 정렬, 이름 순 정렬.
+			정렬은 ajax로 하자. -->
 
 
 
@@ -235,39 +311,9 @@
 	    	</ul>
         </nav>
  
- 	<script type="text/javascript">
-// 		window.onload=()=> {
-// 			/*행 어디를 클릭하든 글 번호를 추출해서 상세보기 페이지로 넘기기
-// 			selectBoard.bo -->bId, writer, page
-			
-// 			1. board접근은
-			
-// 			*/
-// 			const tables = document.querySelectorAll('.smGroupTable')
-// 			for (let tb of tables) {
-// 				let tds = tb.querySelectorAll('td');
-// 				for(const td of tds) {
-// 					td.addEventListener()
-// 				}
-// 			}
-			
-// 			//td에 접근하기
-// // 			const tds = prod.querySelectorAll('td');	//쿼리셀렉터는 내가 원하는 범위에서 찾을 수 있다. 그런 장점 가짐
-// 			//찍어보면, 배열로 잘 나옴.
-// 			for (const td of tds) {
-// 				td.addEventListener('click', function(){
-// 					//부모에 가서, 자식의 몇번째인지인 것을 가져오는 것이 편함
-// 					const trTds = this.parentElement.children;
-// 					const boardId = trTds[0].innerText;
-// 					const writer = trTds[2].innerText;
-// 					location.href='${contextPath}/selectBoard.bo?bId=' + boardId + '&Writer=' + writer + '&page=' + ${pi.currentPage};
-// 							//''안에는 띄어쓰기 있음 안되는건 알지? 이거 url만들어주는거니까.
-// 				})
-// 			}
-// 		}
-	</script>
  
- 
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <%@include file = "marketFooter.jsp" %>
 </body>

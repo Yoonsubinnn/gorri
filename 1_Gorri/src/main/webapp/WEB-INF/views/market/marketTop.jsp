@@ -8,7 +8,7 @@
 <!-- 	<meta name="viewport" content="width=device-width, initial-scale=1"> -->
 	<title>Bootstrap demo</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<link href="css/style.css" rel="stylesheet">
+<!-- 	<link href="css/style.css" rel="stylesheet"> -->
 	<style>
 		.bg{background-color: #FFAB00;}
 		.navbar{height: 50px;}
@@ -17,7 +17,7 @@
 		.bo{border-top: 1px solid black; border-bottom: 1px solid black;}
 		.a{font-weight: bold;}
 	</style>
-<script src="../js/jquery-3.6.4.min.js"></script>
+<script src="resources/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <c:set value="${ pageContext.servletContext.contextPath }" var="contextPath" scope="application"/>

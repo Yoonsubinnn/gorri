@@ -7,10 +7,11 @@
 		select count(*)
 		from product
 	</select>
+	<!-- 마켓 메인페이지로 보내는 메소드입니다. -->
 	<select id="marketMainPage" resultMap="ProductBoardResultSet">
-		select *
-		from product
-		order by product_no desc
+		SELECT *
+		FROM PRODUCT
+		WHERE pro_name LIKE '%${search}%' and category like '%${category}%'
 	</select>
 
 	<!-- 상품의 상세 정보를 위한 매핑입니다. -->
@@ -41,7 +42,13 @@
 		from review
 		where product_no = #{productId}
 	</select>
-
+	
+	<insert id="insertProduct">
+		insert into product
+		values(seq_product.nextval, #{productName}, #{productContent}, #{productPrice}, sysdate, sysdate, #{productCategory}, #{productSellerId})
+	</insert>
+	
+	
 
 		<!--resultMaps -->
 	<!-- Product. -->

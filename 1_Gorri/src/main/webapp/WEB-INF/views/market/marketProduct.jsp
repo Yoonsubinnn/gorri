@@ -175,13 +175,13 @@
 					</div>
 				</div>
 				<div class="sec1 info">
-					<div class="class0">${ p.productName }</div>
+					<div class="class0">${ p.productName } 작성자 : ${ p.productSellerId }</div>
 					<div class="class1 left"><i class="bi bi-list"> </i>카테고리<i class="bi bi-chevron-compact-right"></i>${ p.productCategory }</div>
 					<div class="class1 right"><a class="title">가격 : </a><a> ${ p.productPrice }</a></div>
 					
 			<!-- 얘도 만약 내꺼라면 뜨지 않게 해야함. -->
 			<!-- 처음에 세션 주게하고, 여기서 판단하게 하자. 그게 맞다. -->
-					<c:if test="${ !empty loginUser && (loginUser.userId == product.productSellerId) }">
+					<c:if test="${ !empty loginUser && (loginUser.userId == p.productSellerId) }">
 					<div class="class1 right"><a class="title">수량 : </a><a><i class="bi bi-dash-square-fill"></i></a> 00 <a><i class="bi bi-plus-square-fill"></i></a></div>
 					</c:if>
 					
@@ -190,11 +190,11 @@
 			<!-- 만약 페이지가 내 페이지라면, 수정하기/삭제하기 버튼이 나와야 하고, 상대라면, 구매하기 버튼만 나오게 한다. -->
 					
 					
-					<c:if test="${ !empty loginUser && loginUser.userId == product.productSellerId }">	<!-- 내 상품을 클릭한 경우. -->
+					<c:if test="${ !empty loginUser && loginUser.userId == p.productSellerId }">	<!-- 내 상품을 클릭한 경우. -->
 						<button class="button" onclick="location.href='#"><b>수정하기</b></button>
 						<button class="button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><b>삭제하기</b></button>
 					</c:if>
-					<c:if test="${ empty loginUser || loginUser.userId != product.productSellerId }">	<!--  내 상품이 아닌 경우 -->
+					<c:if test="${ empty loginUser || loginUser.userId != p.productSellerId }">	<!--  내 상품이 아닌 경우 -->
 						<button class="button"
 							onclick="location.href='${ pageContext.servletContext.contextPath }/BuyingPage.market'">
 						<b>구매하기</b></button>
