@@ -63,19 +63,6 @@ public class MarketDAO {
 		return sqlSession.selectOne("marketMapper.getSellerInfo", seller);
 	}
 
-	/**
-	 * 한 상품의 모든 문의를 가져오는 메소드
-	 */
-	public ArrayList<Inquire> getProductInquire(SqlSessionTemplate sqlSession, int productId) {
-		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("marketMapper.getProductInquire", productId);
-	}
-
-	public ArrayList<Review> getProductReview(SqlSessionTemplate sqlSession, int productId) {
-		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("marketMapper.getProductReview", productId);
-	}
-
 	public int insertproduct(SqlSessionTemplate sqlSession, Product p) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -110,6 +97,16 @@ public class MarketDAO {
 		parameterMap.put("productId", productId);
 		parameterMap.put("inquireNo", inquireNo);
 		return sqlSession.selectOne("marketMapper.ProductOneInquire", parameterMap);
+	}
+
+	public ArrayList<Inquire> ProductAllInquire(SqlSessionTemplate sqlSession, int productId) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("marketMapper.ProductAllInquire", productId);
+	}
+
+	public ArrayList<Review> ProductAllReview(SqlSessionTemplate sqlSession, int productId) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("marketMapper.ProductAllReview", productId);
 	}
 
 }

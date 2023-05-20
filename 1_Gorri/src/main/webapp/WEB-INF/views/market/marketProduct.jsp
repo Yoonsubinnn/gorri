@@ -208,7 +208,8 @@
 						<button class="button"
 							onclick="location.href='${ pageContext.servletContext.contextPath }/BuyingPage.market'">
 						<b>구매하기</b></button>
-						<button class="button like" onclick="location.href='#"><i class="bi bi-heart-fill"></i></button>
+<!-- 						<button class="button like" onclick="location.href='#"><i class="bi bi-heart-fill"></i></button> -->
+							<!-- 좋아요 버튼은 빠짐 -->
 					</c:if>
 					
 					
@@ -262,13 +263,13 @@
 						<th class="date">작성일자</th>
 					</tr>
 						
-					<c:forEach items="${ productInq }" var="proInq">
+					<c:forEach items="${ productInq }" var="p" end="4">
 <%-- 						<tr class="rows" onclick="location.href='${ contextPath }/ProductInquire.market?productId='+${ proInq.productNo }+'&inquireNo='+${ proInq.inquireNo }"> --%>
-						<tr class="rows" onclick="location.href='${contextPath}/ProductInquire.market?productId=${proInq.productNo}&inquireNo=${proInq.inquireNo}'">						
-							<td>${ proInq.inquireNo }</td>
-							<td>${ proInq.buyerId }</td>
-							<td>${ proInq.inquireContent }</td>
-							<td>${ proInq.inquirePostDate }</td>
+						<tr class="rows" onclick="location.href='${contextPath}/ProductInquire.market?productId=${p.productNo}&inquireNo=${p.inquireNo}'">						
+							<td>${ p.inquireNo }</td>
+							<td>${ p.buyerId }</td>
+							<td>${ p.inquireContent }</td>
+							<td>${ p.inquirePostDate }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -304,7 +305,7 @@
 						<th class="date">작성일자</th>
 					</tr>
 					
-					<c:forEach items="${ productReview }" var="proRev">
+					<c:forEach items="${ productReview }" var="proRev" end="4">
 						<tr class="rows" onclick="location.href='${contextPath}/ProductReview.market?productId=${proRev.productNo}&reviewNo=${proRev.reviewNo}'">
 							<td>${ proRev.reviewNo }</td>
 							<td>${ proRev.buyerId }</td>

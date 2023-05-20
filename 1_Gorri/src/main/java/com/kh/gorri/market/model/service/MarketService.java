@@ -19,21 +19,29 @@ public interface MarketService {
 
 	Member getSellerInfo(String seller);
 
-	ArrayList<Inquire> getProductInquire(int productId);
-
-	ArrayList<Review> getProductReview(int productId);
+//	ArrayList<Inquire> getProductInquire(int productId);
+//
+//	ArrayList<Review> getProductReview(int productId);
 	
 	int insertProduct(Product p);
 
 	int insertProudctattm(ArrayList<Attachment> list);
 
 	ArrayList<Inquire> ProductAllInquire(PageInfo pi, Integer productId);
+	
+	ArrayList<Inquire> ProductAllInquire(int productId);
 
 	ArrayList<Review> ProductAllReview(PageInfo pi, Integer productId);
+	
+	ArrayList<Review> ProductAllReview(int productId);
 
 	Review ProductOneReview(Integer productId, Integer reviewNo);
 
 	Inquire ProductOneInquire(Integer productId, Integer inquireNo);
+
+	
+
+	
 
 }
 

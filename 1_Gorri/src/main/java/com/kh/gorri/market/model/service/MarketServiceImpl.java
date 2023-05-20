@@ -58,17 +58,6 @@ public class MarketServiceImpl implements MarketService {
 			return mDAO.getSellerInfo(sqlSession, seller);
 		}
 		@Override
-		public ArrayList<Inquire> getProductInquire(int productId) {
-			// TODO Auto-generated method stub
-			return mDAO.getProductInquire(sqlSession, productId);
-		}
-		@Override
-		public ArrayList<Review> getProductReview(int productId) {
-			// TODO Auto-generated method stub
-			return mDAO.getProductReview(sqlSession, productId);
-		}
-		
-		@Override
 		public int insertProduct(Product p) {
 			return mDAO.insertproduct(sqlSession, p);
 		}
@@ -96,6 +85,16 @@ public class MarketServiceImpl implements MarketService {
 		public Inquire ProductOneInquire(Integer productId, Integer inquireNo) {
 			// TODO Auto-generated method stub
 			return mDAO.ProductOneInquire(sqlSession, productId, inquireNo);
+		}
+		@Override
+		public ArrayList<Inquire> ProductAllInquire(int productId) {
+			// TODO Auto-generated method stub
+			return mDAO.ProductAllInquire(sqlSession, productId);
+		}
+		@Override
+		public ArrayList<Review> ProductAllReview(int productId) {
+			// TODO Auto-generated method stub
+			return mDAO.ProductAllReview(sqlSession, productId);
 		}
 	
 }

@@ -142,7 +142,7 @@ public class MarketController {
 			//잘 가져왔을 때.
 			model.addAttribute("pi", pi);
 			model.addAttribute("list", list);
-			return "ProductReview";
+			return "marketReviewBoard";
 		} else {
 			throw new MarketException("게시글 조회 실패");
 		}
@@ -174,7 +174,7 @@ public class MarketController {
 	
 	@RequestMapping("ProductInquire.market")
 	public ModelAndView ProductOneInquire(@RequestParam(value = "productId") Integer productId,
-			@RequestParam("InquireNo") Integer inquireNo,
+			@RequestParam("inquireNo") Integer inquireNo,
 			ModelAndView mv) {
 		System.out.println("ProductInquire 작동");
 		Inquire r = mService.ProductOneInquire(productId, inquireNo);
@@ -224,12 +224,12 @@ public class MarketController {
 				/*해야할 것:ㅣ
 				 * 1. 상품의 id를 통해 문의, 후기를 가져오기*/
 		//1. 문의
-		ArrayList<Inquire> productInq = mService.getProductInquire(productId);
+		ArrayList<Inquire> productInq = mService.ProductAllInquire(productId);
 		System.out.println(productInq); 
 		
 		//2. 후기
 		
-		ArrayList<Review> productReview = mService.getProductReview(productId);
+		ArrayList<Review> productReview = mService.ProductAllReview(productId);
 		System.out.println(productInq); 
 		
 		
