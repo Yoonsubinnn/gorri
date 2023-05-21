@@ -19,13 +19,25 @@
 			<tr>
 				<td>작성자 : ${ i.buyerId } 작성일자 : ${ i.inquirePostDate }</td>
 				<br><br><br>
-				<td>문의내용</td>
-				<td>$[ i.inquireContent]</td>	
+				<td>문의내용:</td>
+				<td>${ i.inquireContent }</td>	
 			</tr>
-			<div class="input-group mb-3">
-			  <input type="text" class="form-control" placeholder="여기에 댓글 작성" aria-label="여기에 댓글 작성" aria-describedby="button-addon2">
-			  <button class="btn btn-outline-secondary" type="button" id="button-addon2">제출하기</button>
-			</div>
+			<form action="${ contextPath }/ReplySubmit.market?productNo=${i.productNo}?inquireNo=${ i.inquireNo }" method="post">
+			  <div class="input-group mb-3">
+			    <input type="text" name="comment" class="form-control" placeholder="comment here" aria-label="comment here" aria-describedby="button-addon2">
+			    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
+			  </div>
+			</form>
+			
+			
+			
+<!-- 			<div class="input-group mb-3"> -->
+<!-- 			  <input type="text" class="form-control" placeholder="여기에 댓글 작성" aria-label="여기에 댓글 작성" aria-describedby="button-addon2"> -->
+<!-- 			  <button class="btn btn-outline-secondary" type="button" id="button-addon2">제출하기</button> -->
+<!-- 			</div> -->
+		
+			
+			<%-- 			  onclick="location.href='${contextPath}/Product.market?productId='+${ a.productNo }+'&page='+${pi.currentPage}" --%>
 			
 			<div>
 				<table>

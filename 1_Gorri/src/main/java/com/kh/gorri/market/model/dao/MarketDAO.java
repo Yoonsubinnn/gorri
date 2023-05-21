@@ -118,4 +118,21 @@ public class MarketDAO {
 		return (ArrayList)sqlSession.selectList("marketMapper.ProductOneInquireReply", parameterMap);
 	}
 
+	public ArrayList<Product> UserAllProduct(SqlSessionTemplate sqlSession, String id) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("marketMapper.UserAllProduct", id);
+	}
+
+	public int addReply(SqlSessionTemplate sqlSession, String comment, Member m, String productNo, String inquireNo) {
+		// TODO Auto-generated method stub
+		
+		String id = m.getUserId();
+		Map<String, Object> parameterMap = new HashMap<>();
+		parameterMap.put("comment", comment);
+		parameterMap.put("id", id);
+		parameterMap.put("productNo", productNo);
+		parameterMap.put("inquireNo", inquireNo);
+		return sqlSession.insert("marketMapper.addReply", parameterMap);
+	}
+
 }

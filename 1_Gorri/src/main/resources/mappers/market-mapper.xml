@@ -57,14 +57,26 @@
 	<select id="ProductOneInquire" resultMap="inquireResultSet">
 		select *
 		from inquire
-		where product_no = #{productId} and inquire_no = #{inquireNo}
+		where product_no = ${productId} and inquire_no = ${inquireNo}
 	</select>
 	
 	<select id="ProductOneInquireReply" resultMap="inquireReplyResultSet">
 		select *
 		from inquire_reply
-		where product_no = #{productId} and inquire_no = #{inquireNo}
+		where product_no2 = #{productId} and inquire_no2 = #{inquireNo}
 	</select>
+	
+	<select id="UserAllProduct" resultMap="ProductBoardResultSet">
+		select *
+		from product
+		where SELLER_ID = #{id}
+	</select>
+	
+	<insert id="addReply">
+		insert into inquire_reply
+		values(#{inquireNo}, #{productNo},seq_name.NEXTVAL, #{comment}, #{id}, sysdate, sysdate  )
+	</insert>
+	
 	
 
 		<!--resultMaps -->
@@ -99,7 +111,7 @@
 	
 	<!-- Inquire -->
 	<resultMap type="Inquire" id="inquireResultSet">
-		<id column="INQUIRE_NO" property="inquireNo"/>
+		<result column="INQUIRE_NO" property="inquireNo"/>		
 		<result column="INQUIRE_CONTENT" property="inquireContent"/>
 		<result column="POSTDATE" property="inquirePostDate"/>
 		<result column="BUYER_ID" property="buyerId"/>

@@ -223,9 +223,7 @@
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 --> 
 			<div class="section2"> <!-- section 2: 판매자가 입력한 상품 상세정보 입력부분 -->
 				<div class="product-info"><i class="bi bi-caret-right-fill"></i> 상품정보</div>
-				<div class="product-text">
-					${ p.productContent }
-				</div>
+				<div class="product-text">${ p.productContent }</div>
 			</div>
 		</div>	
 			

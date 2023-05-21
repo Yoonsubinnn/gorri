@@ -42,6 +42,10 @@ public interface MarketService {
 
 	ArrayList<InquireReply> ProductOneInquireReply(Integer productId, Integer inquireNo);
 
+	ArrayList<Product> UserAllProduct(String id);
+
+	int addReply(String comment, Member m, String productNo, String inquireNo);
+
 	
 
 	

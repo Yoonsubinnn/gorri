@@ -102,5 +102,15 @@ public class MarketServiceImpl implements MarketService {
 			// TODO Auto-generated method stub
 			return mDAO.ProductOneInquireReply(sqlSession, productId, inquireNo);
 		}
+		@Override
+		public ArrayList<Product> UserAllProduct(String id) {
+			// TODO Auto-generated method stub
+			return mDAO.UserAllProduct(sqlSession, id);
+		}
+		@Override
+		public int addReply(String comment, Member m, String productNo, String inquireNo) {
+			// TODO Auto-generated method stub
+			return mDAO.addReply(sqlSession, comment, m, productNo, inquireNo);
+		}
 	
 }

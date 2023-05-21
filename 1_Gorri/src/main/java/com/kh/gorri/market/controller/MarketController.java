@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,8 +58,8 @@ public class MarketController {
 		}
 		
 		int listCount = mService.getListCount(1);
-		System.out.println("listCount: "+listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 9);
+		System.out.println("listCount: "+listCount);
 		System.out.println("pi: "+pi);
 		
 		//카테고리가 비어있거나 원하는 것이 아니라면, 잘못된 접근하도록.
@@ -187,9 +188,9 @@ public class MarketController {
 	 * @return
 	 */
 	@RequestMapping("ProductInquire.market")
-	public ModelAndView ProductOneInquire(@RequestParam(value = "productId") Integer productId,
-			@RequestParam("inquireNo") Integer inquireNo,
-			ModelAndView mv) {
+	public ModelAndView ProductOneInquire(@RequestParam("productId") Integer productId,
+											@RequestParam("inquireNo") Integer inquireNo,
+											ModelAndView mv) {
 		System.out.println("ProductInquire 작동");
 		Inquire i = mService.ProductOneInquire(productId, inquireNo);
 		ArrayList<InquireReply> irList = mService.ProductOneInquireReply(productId,inquireNo);
@@ -214,7 +215,7 @@ public class MarketController {
 											ModelAndView mv,
 											@RequestParam("productId") int productId,	//상품번호(productId)
 //											@RequestParam("writer") String writer, 
-											@RequestParam("page") int page) {
+											@RequestParam(value = "page", required = false) Integer page) {
 		
 		
 		Member m = (Member)session.getAttribute("loginUser");	//지금 로그인한 놈 객체 만드는 함수
@@ -231,6 +232,12 @@ public class MarketController {
 		
 				/*해야할 것:ㅣ
 				 * 1. 상품의 id를 통해 문의, 후기를 가져오기*/
+		
+		if(page == null) {
+			page = 1;
+		}
+		
+		
 		//1. 문의
 		ArrayList<Inquire> productInq = mService.ProductAllInquire(productId);
 		System.out.println(productInq); 
@@ -255,26 +262,29 @@ public class MarketController {
 			throw new MarketException("게시글 상세보기를 실패하였습니다.");
 		}
 	}
-	//위가 완성되기 전에는 이걸 사용하세요
-//	@RequestMapping("Product.market")
-//	public String marketProductDetail() {
-//		//TODO
-//		
-//		System.out.println("marketProductDetail");
-//		
-//		//다 수정하면 marketProduct로 바꿔주세요
-//		return "marketProduct";
-//	}
+	
 	/**
 	 * 마켓 메인페이지에서 등록한 상품 버튼 누르면
 	 * 유저가 등록한 상품 게시판으로 이동
 	 */
-	@RequestMapping("MyProductBoard.market")
-	public String marketMyProductBoard() {
+	@GetMapping("MyProductBoard.market")
+	public ModelAndView marketMyProductBoard(HttpSession session,
+									   ModelAndView mv) {
 		//TODO
-		System.out.println("marketMyProductBoard");
+		/*단순히 링크로 넘어가면서, 세션에서 로그인한 유저의 아이디를 가져와
+		 * 그 아이디로 등록한 상품을 찾는 쿼리문 돌려서, 그걸 가지고가면 됨.
+		 * 모델에 담아야겠네. 같이 담아서 넘어가야 하니까.*/
+		System.out.println("marketMyProductBoard 실행");
+		String id = ((Member)session.getAttribute("loginUser")).getUserId();
+		ArrayList<Product> list = mService.UserAllProduct(id);
 		
-		return "marketMyProductBoard";
+		if(id != null) {
+			mv.addObject("list", list);
+			mv.setViewName("marketMyProductBoard");
+			return mv;
+		} else {
+			throw new MarketException("내가 등록한 상품 조회를 실패하였습니다.");
+		}	
 	}
 	
 	/**
@@ -312,6 +322,25 @@ public class MarketController {
 		
 		return "marketBuyingPage";
 	}
+	
+	@PostMapping("ReplySubmit.market")
+	public ModelAndView marketMyProductBoard(HttpSession session, 
+											    @RequestParam("comment") String comment, 
+											    @RequestParam("productNo") String productNo, 
+											    @RequestParam("inquireNo") String inquireNo, 
+											    ModelAndView mv) {
+	  
+	  System.out.println("Received comment: " + comment);
+
+	  Member m = (Member)session.getAttribute("loginUser");
+	  int result = mService.addReply(comment, m, productNo, inquireNo);
+	  
+	  // Rest of your code...
+
+	  // Return the ModelAndView as required
+	  return mv;
+	}
+	
 	
 	
 	
