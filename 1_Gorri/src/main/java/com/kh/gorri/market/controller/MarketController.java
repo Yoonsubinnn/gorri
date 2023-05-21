@@ -25,6 +25,7 @@ import com.kh.gorri.group.model.vo.Attachment;
 import com.kh.gorri.market.model.exception.MarketException;
 import com.kh.gorri.market.model.service.MarketService;
 import com.kh.gorri.market.model.vo.Inquire;
+import com.kh.gorri.market.model.vo.InquireReply;
 import com.kh.gorri.market.model.vo.Product;
 import com.kh.gorri.market.model.vo.Review;
 import com.kh.gorri.member.model.vo.Member;
@@ -190,10 +191,12 @@ public class MarketController {
 			@RequestParam("inquireNo") Integer inquireNo,
 			ModelAndView mv) {
 		System.out.println("ProductInquire ¿€µø");
-		Inquire r = mService.ProductOneInquire(productId, inquireNo);
+		Inquire i = mService.ProductOneInquire(productId, inquireNo);
+		ArrayList<InquireReply> irList = mService.ProductOneInquireReply(productId,inquireNo);
 		
-		if(r != null) {
-			mv.addObject("r", r);
+		if(i != null) {
+			mv.addObject("i", i);
+			mv.addObject("irList", irList);
 			mv.setViewName("marketInquireDetail");
 			return mv;
 		} else {

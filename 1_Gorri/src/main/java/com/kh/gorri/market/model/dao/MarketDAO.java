@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.market.model.vo.Inquire;
+import com.kh.gorri.market.model.vo.InquireReply;
 import com.kh.gorri.market.model.vo.Product;
 import com.kh.gorri.market.model.vo.Review;
 import com.kh.gorri.member.model.vo.Member;
@@ -107,6 +108,14 @@ public class MarketDAO {
 	public ArrayList<Review> ProductAllReview(SqlSessionTemplate sqlSession, int productId) {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("marketMapper.ProductAllReview", productId);
+	}
+
+	public ArrayList<InquireReply> ProductOneInquireReply(SqlSessionTemplate sqlSession, Integer productId, Integer inquireNo) {
+		// TODO Auto-generated method stub
+		Map<String, Object> parameterMap = new HashMap<>();
+		parameterMap.put("productId", productId);
+		parameterMap.put("inquireNo", inquireNo);	
+		return (ArrayList)sqlSession.selectList("marketMapper.ProductOneInquireReply", parameterMap);
 	}
 
 }

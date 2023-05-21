@@ -60,6 +60,12 @@
 		where product_no = #{productId} and inquire_no = #{inquireNo}
 	</select>
 	
+	<select id="ProductOneInquireReply" resultMap="inquireReplyResultSet">
+		select *
+		from inquire_reply
+		where product_no = #{productId} and inquire_no = #{inquireNo}
+	
+	</select>
 	
 
 		<!--resultMaps -->

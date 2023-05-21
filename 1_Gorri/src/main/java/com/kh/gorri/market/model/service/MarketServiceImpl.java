@@ -10,6 +10,7 @@ import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.group.model.vo.Attachment;
 import com.kh.gorri.market.model.dao.MarketDAO;
 import com.kh.gorri.market.model.vo.Inquire;
+import com.kh.gorri.market.model.vo.InquireReply;
 import com.kh.gorri.market.model.vo.Product;
 import com.kh.gorri.market.model.vo.Review;
 import com.kh.gorri.member.model.vo.Member;
@@ -95,6 +96,11 @@ public class MarketServiceImpl implements MarketService {
 		public ArrayList<Review> ProductAllReview(int productId) {
 			// TODO Auto-generated method stub
 			return mDAO.ProductAllReview(sqlSession, productId);
+		}
+		@Override
+		public ArrayList<InquireReply> ProductOneInquireReply(Integer productId, Integer inquireNo) {
+			// TODO Auto-generated method stub
+			return mDAO.ProductOneInquireReply(sqlSession, productId, inquireNo);
 		}
 	
 }

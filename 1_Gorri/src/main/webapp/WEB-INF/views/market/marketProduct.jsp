@@ -264,7 +264,6 @@
 					</tr>
 						
 					<c:forEach items="${ productInq }" var="p" end="5">
-<%-- 						<tr class="rows" onclick="location.href='${ contextPath }/ProductInquire.market?productId='+${ proInq.productNo }+'&inquireNo='+${ proInq.inquireNo }"> --%>
 						<tr class="rows" onclick="location.href='${contextPath}/ProductInquire.market?productId=${p.productNo}&inquireNo=${p.inquireNo}'">						
 							<td>${ p.inquireNo }</td>
 							<td>${ p.buyerId }</td>

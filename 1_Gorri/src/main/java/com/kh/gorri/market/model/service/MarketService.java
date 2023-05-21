@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.group.model.vo.Attachment;
 import com.kh.gorri.market.model.vo.Inquire;
+import com.kh.gorri.market.model.vo.InquireReply;
 import com.kh.gorri.market.model.vo.Product;
 import com.kh.gorri.market.model.vo.Review;
 import com.kh.gorri.member.model.vo.Member;
@@ -38,6 +39,8 @@ public interface MarketService {
 	Review ProductOneReview(Integer productId, Integer reviewNo);
 
 	Inquire ProductOneInquire(Integer productId, Integer inquireNo);
+
+	ArrayList<InquireReply> ProductOneInquireReply(Integer productId, Integer inquireNo);
 
 	
 
