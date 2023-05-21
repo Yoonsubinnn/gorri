@@ -64,7 +64,6 @@
 		select *
 		from inquire_reply
 		where product_no = #{productId} and inquire_no = #{inquireNo}
-	
 	</select>
 	
 
@@ -136,11 +135,12 @@
 	
 	<!-- InquireReply -->
 	<resultMap type="InquireReply" id="inquireReplyResultSet">
-		<id column="REPLY_NO" property="replyNo;"/>
-		<result column="REPLY_CONTENT" property="replyContent;"/>
-		<result column="REPLY_WRITER" property="replyWriter;"/>
-		<result column="REPLY_CREATE_DATE" property="replyCreateDate;"/>
-		<result column="REPLY_MODIFY_DATE" property="replyModifyDate;"/>
-		<result column="INQUIRE_NO" property="inquireNo;"/>
+		<result column="INQUIRE_NO2" property="inquireNo"/>
+		<result column="PRODUCT_NO2" property="productNo"/>
+		<result column="REPLY_NO" property="replyNo"/>
+		<result column="REPLY_CONTENT" property="replyContent"/>
+		<result column="REPLY_WRITER" property="replyWriter"/>
+		<result column="REPLY_CREATE_DATE" property="replyCreateDate"/>
+		<result column="REPLY_MODIFY_DATE" property="replyModifyDate"/>
 	</resultMap>
 </mapper>

@@ -16,8 +16,9 @@ import lombok.ToString;
 public class Inquire {
 	
 	private int inquireNo;
+	private int productNo;
 	private String inquireContent;
 	private Date inquirePostDate;
 	private String buyerId;
-	private int productNo;
+	
 }

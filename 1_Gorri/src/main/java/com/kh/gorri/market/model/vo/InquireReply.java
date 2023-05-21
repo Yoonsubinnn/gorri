@@ -14,11 +14,13 @@ import lombok.ToString;
 @Getter
 @Setter
 public class InquireReply {
+	private int inquireNo;
+	private int productNo;
 	private int replyNo;
 	private String replyContent;
 	private String replyWriter;
 	private Date replyCreateDate;
 	private Date replyModifyDate;
-	private int inquireNo;
+	
 
 }
