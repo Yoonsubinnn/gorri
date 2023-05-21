@@ -101,20 +101,23 @@ public class MarketController {
 		System.out.println("listCount: "+ listCount);
 		System.out.println("pi: "+ pi);
 		
-	
+		Product p = mService.getProductInfo(productId);
 		ArrayList<Inquire> list = mService.ProductAllInquire(pi, productId);		
+		
 		if(list !=null) {
 			//잘 가져왔을 때.
 			model.addAttribute("pi", pi);
 			model.addAttribute("list", list);
-			return "ProductInquire";
+			model.addAttribute("p", p);
+
+			return "marketInquireBoard";
 		} else {
 			throw new MarketException("게시글 조회 실패");
 		}
 	}
 	
 	/**
-	 * 상품의 모든 리뷰를 받아오는 메소드
+	 * 상품의 모든 리뷰를 받아오는 메소드, 즉 리뷰게시판으로 넘어감
 	 * @param currentPage
 	 * @param productId
 	 * @param reviewNo
@@ -123,7 +126,7 @@ public class MarketController {
 	 */
 	@RequestMapping("ReviewBoard.market")
 	public String ProductAllReview(@RequestParam(value = "page", required = false) Integer currentPage,
-			@RequestParam(value = "productId") Integer productId,
+			@RequestParam(value = "productId", required=false) Integer productId,
 			Model model) {
 		
 		System.out.println("ProductAllReview 작동");
@@ -136,12 +139,16 @@ public class MarketController {
 		System.out.println("listCount: "+ listCount);
 		System.out.println("pi: "+ pi);
 		
+		Product p = mService.getProductInfo(productId);
+		ArrayList<Review> list = mService.ProductAllReview(pi, productId);
 		
-		ArrayList<Review> list = mService.ProductAllReview(pi, productId);		
+		
+		
 		if(list !=null) {
 			//잘 가져왔을 때.
 			model.addAttribute("pi", pi);
 			model.addAttribute("list", list);
+			model.addAttribute("p", p);
 			return "marketReviewBoard";
 		} else {
 			throw new MarketException("게시글 조회 실패");
@@ -164,14 +171,20 @@ public class MarketController {
 		
 		if(r != null) {
 			mv.addObject("r", r);
-			mv.setViewName("Review");
+			mv.setViewName("marketReview");
 			return mv;
 		} else {
 			throw new MarketException("리뷰 상세보기를 실패하였습니다.");
 		}
 	}
 	
-	
+	/**
+	 * 어느 상품의 질문 상세페이지로 이동
+	 * @param productId
+	 * @param inquireNo
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("ProductInquire.market")
 	public ModelAndView ProductOneInquire(@RequestParam(value = "productId") Integer productId,
 			@RequestParam("inquireNo") Integer inquireNo,
@@ -181,20 +194,12 @@ public class MarketController {
 		
 		if(r != null) {
 			mv.addObject("r", r);
-			mv.setViewName("Inquire");
+			mv.setViewName("marketInquireDetail");
 			return mv;
 		} else {
 			throw new MarketException("리뷰 상세보기를 실패하였습니다.");
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/**
 	 * 각 게시물을 누르면 게시물의 상세내용으로 이동합니다.

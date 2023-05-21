@@ -174,7 +174,7 @@
 	</div>
 
 	<!-- 드롭다운을 위해 회원 순서대로 정렬하려고 하는데, 버튼을 누르면 시간순 정렬, 이름 순 정렬.
-			정렬은 ajax로 하자. -->
+			정렬은 ajax로? -->
 
 	<!-- 게시판-->	
 	<div style="text-align:center; margin:30px; margin-left:auto; margin-right:auto;">
@@ -189,17 +189,21 @@
 							<td class="groupPic"><img src="#" class="gThumnail"></td>
 						</tr>
 						<tr>
-							<td class="groupTitle"><a href="${ contextPath }/ProductDetail.market" class="groupLink">${ a.productName }</a></td>
+							<td class="groupTitle">${ a.productName }</td>
 						</tr>
 						<tr>
-							<td class="groupIntro">${ a.productPrice }</td>
+							<td class="groupIntro">${ a.productPrice }원</td>
 						</tr>
 						<tr>
-							<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">
-								<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;"> 
-								<span>10</span>
-							</td> 
+							<td class="tags" style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;">태그 : ${ a.productCategory }</td>
 						</tr>
+						
+<!-- 						<tr> -->
+<!-- 							<td style="text-align:right; padding-right:20px; height:80px;paddding-bottom:20px;"> -->
+<!-- 								<img src="resources/assets/heart.png" style="width:25px; height:25px; cursor:pointer;">  -->
+<!-- 								<span>10</span> -->
+<!-- 							</td>  -->
+<!-- 						</tr> -->
 					</table>
 				</td>
 			</tr>

@@ -200,11 +200,11 @@
 					<div class="class-btn">
 			<!-- 만약 페이지가 내 페이지라면, 수정하기/삭제하기 버튼이 나와야 하고, 상대라면, 구매하기 버튼만 나오게 한다. -->
 					
-					<c:if test="${ !empty loginUser && loginUser.userId == p.productSellerId }">	<!-- 내 상품을 클릭한 경우. -->
+					<c:if test="${ !empty loginUser && (loginUser.userId == p.productSellerId) }">	<!-- 내 상품을 클릭한 경우. -->
 						<button class="button" onclick="location.href='#"><b>수정하기</b></button>
 						<button class="button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><b>삭제하기</b></button>
 					</c:if>
-					<c:if test="${ empty loginUser || loginUser.userId != p.productSellerId }">	<!--  내 상품이 아닌 경우 -->
+					<c:if test="${ empty loginUser || (loginUser.userId != p.productSellerId) }">	<!--  내 상품이 아닌 경우 -->
 						<button class="button"
 							onclick="location.href='${ pageContext.servletContext.contextPath }/BuyingPage.market'">
 						<b>구매하기</b></button>
@@ -251,7 +251,7 @@
 				<a href="${contextPath}/InquireBoard.market?productId=${p.productNo}" class="btn btn-primary">문의게시판으로 이동</a>
 				
 				<!-- 자기 상품 아니고, 로그인 했을 시에 문의등록 가능하게 하는 버튼 -->
-				<c:if test="${ empty loginUser || loginUser.userId != p.productSellerId }">
+				<c:if test="${ !empty loginUser && (loginUser.userId != p.productSellerId) }">
 					<a href="${contextPath}/InquireBoard.market?productId=${p.productNo}" class="btn btn-primary">문의 등록</a>
 				</c:if>
 				
@@ -263,7 +263,7 @@
 						<th class="date">작성일자</th>
 					</tr>
 						
-					<c:forEach items="${ productInq }" var="p" end="4">
+					<c:forEach items="${ productInq }" var="p" end="5">
 <%-- 						<tr class="rows" onclick="location.href='${ contextPath }/ProductInquire.market?productId='+${ proInq.productNo }+'&inquireNo='+${ proInq.inquireNo }"> --%>
 						<tr class="rows" onclick="location.href='${contextPath}/ProductInquire.market?productId=${p.productNo}&inquireNo=${p.inquireNo}'">						
 							<td>${ p.inquireNo }</td>
@@ -305,7 +305,7 @@
 						<th class="date">작성일자</th>
 					</tr>
 					
-					<c:forEach items="${ productReview }" var="proRev" end="4">
+					<c:forEach items="${ productReview }" var="proRev" end="5">
 						<tr class="rows" onclick="location.href='${contextPath}/ProductReview.market?productId=${proRev.productNo}&reviewNo=${proRev.reviewNo}'">
 							<td>${ proRev.reviewNo }</td>
 							<td>${ proRev.buyerId }</td>
