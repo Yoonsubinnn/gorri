@@ -57,6 +57,10 @@ public class MarketController {
 			currentPage = 1;
 		}
 		
+		if(category.equals("ÀüÃ¼")) {
+			category = null;
+		}
+		
 		int listCount = mService.getListCount(1);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 9);
 		System.out.println("listCount: "+listCount);

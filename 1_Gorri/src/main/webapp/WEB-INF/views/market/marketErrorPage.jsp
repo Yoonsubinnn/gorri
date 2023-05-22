@@ -19,8 +19,8 @@
 <%--     		<p class="lead">${ msg }</p> --%>
     		<p class="lead">${ requestScope['javax.servlet.error.message'] }</p>
 		    <p class="lead">
-		    	<a href="${ contextPath }/home.do" class="btn btn-lg fw-bold border-white bg-white">GO TO HOME</a>
-		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%-- 		    	<a href="${ contextPath }/home.do" class="btn btn-lg fw-bold border-white bg-white">GO TO HOME</a> --%>
+<!-- 		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 		    	<a href="javascript:history.back()" class="btn btn-lg fw-bold border-white bg-white">GO TO BACK</a>
 		    	
 		    </p>

@@ -138,7 +138,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="marketTop.jsp" %>
+<%-- 	<%@ include file="marketTop.jsp" %> --%>
 	<br>
 	<div class="div"> <!-- 제일 바깥쪽 여백 범위 위한 div -->
 		<div class="center-div"> <!-- 얘네는 다 수직정렬 되야함 -->
@@ -285,7 +285,7 @@
 	</div>
 		
 		
-	<%@ include file="marketFooter.jsp" %>
+<%-- 	<%@ include file="marketFooter.jsp" %> --%>
 	
 	
 	<!--  삭제확인 알림창 -->
@@ -308,27 +308,22 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		window.onload = function() {
+		    let bigPic = document.querySelector('.img-big');
+		    let smallPics = document.querySelectorAll('.img-mini');
+		
+		    for(let i = 0; i < smallPics.length; i++) {
+		        smallPics[i].onclick = changepic;
+		    }
+		
+		    function changepic() {
+		        let smallPicsAttribute = this.getAttribute('src');
+		        bigPic.setAttribute('src', smallPicsAttribute);
+		    }
+		}
 	
-	
-	
-	
-	+
-<script>
-	window.onload = function() {
-	    let bigPic = document.querySelector('.img-big');
-	    let smallPics = document.querySelectorAll('.img-mini');
-	
-	    for(let i = 0; i < smallPics.length; i++) {
-	        smallPics[i].onclick = changepic;
-	    }
-	
-	    function changepic() {
-	        let smallPicsAttribute = this.getAttribute('src');
-	        bigPic.setAttribute('src', smallPicsAttribute);
-	    }
-	}
-
-</script>
+	</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

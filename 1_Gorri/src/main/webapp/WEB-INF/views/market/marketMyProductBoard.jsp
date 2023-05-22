@@ -119,7 +119,6 @@
 	<!-- 내가 등록한 상품 표시부분 div -->
 	<div>
 		<h1 align="center">내가 등록한 상품</h1>
-		<!-- 서식 가져오는 것이 나음 -->
 	</div>
 	
 	
@@ -151,10 +150,6 @@
 		</table>
 		</c:forEach>
 	</div>
-
-	
-	
-	
 	
 	<%@include file = "marketFooter.jsp" %>
 

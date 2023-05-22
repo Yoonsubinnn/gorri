@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body class="bg-light">
-	<%@include file = "marketTop.jsp" %>
+<%-- 	<%@include file = "marketTop.jsp" %> --%>
 	<div class="container">
 		<main>
 			<div class="py-5 text-center">

@@ -15,6 +15,7 @@
 
 						<!-- 마찬가지로 pi, list 받음 -->
 	<%@include file = "marketTop.jsp" %>
+	
 	<div class="container py-4">
 		<div class="bd-example-snippet bd-code-snippet">
 			<div class="p-5 mb-4 bg-light rounded-3">
@@ -22,7 +23,6 @@
 					<h1 class="display-5 fw-bold">상품 ${ p.productName }의 문의 게시판</h1>
 					
 					<c:if test="${ !empty loginUser && (loginUser.userId == p.productSellerId) }">
-<%-- 						<a href="${contextPath}/InquireBoard.market?productId=${p.productNo}" class="btn btn-primary">문의 등록</a> --%>
 						<h6>게시글 클릭 시 답변 남길 수 있습니다.</h6>
 					</c:if>	
 					
@@ -55,6 +55,7 @@
 	        	</table>
 	       	</div>
 		</div>
+	</div>
 
 	<%@include file = "marketFooter.jsp" %>
 	

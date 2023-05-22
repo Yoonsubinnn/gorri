@@ -13,6 +13,7 @@
 <body>
 
 	<%@include file = "marketTop.jsp" %>
+	
 	<div class="container py-4">
 		<div class="bd-example-snippet bd-code-snippet">
 			<div class="p-5 mb-4 bg-light rounded-3">
@@ -43,6 +44,7 @@
 	        	</table>
 	       	</div>
 		</div>
+	</div>
 	<%@include file = "marketFooter.jsp" %>
 	
 	

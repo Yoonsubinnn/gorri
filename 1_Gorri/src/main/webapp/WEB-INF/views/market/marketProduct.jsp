@@ -156,10 +156,7 @@
 </style>
 </head>
 
-				<!-- 작성중입니다. 로직을 위해.
-				현재 버전으로 서버 돌리면  이 페이지로 넘어가지진 않습니다. 
-				
-				
+				<!-- 
 				controller에서 다음을 받아옵니다.'
 				p : 상품 객체
 				page : 이전의 pagenation
@@ -190,21 +187,22 @@
 					<div class="class1 left"><i class="bi bi-list"> </i>카테고리<i class="bi bi-chevron-compact-right"></i>${ p.productCategory }</div>
 					<div class="class1 right"><a class="title">가격 : </a><a> ${ p.productPrice }</a></div>
 					
-			<!-- 얘도 만약 내꺼라면 뜨지 않게 해야함. -->
-			<!-- 처음에 세션 주게하고, 여기서 판단하게 하자. 그게 맞다. -->
+			<!-- 내 제품이라면 수량 선택은 뜨지 않게 해야함. -->
 					<c:if test="${ !empty loginUser && (loginUser.userId == p.productSellerId) }">
 					<div class="class1 right"><a class="title">수량 : </a><a><i class="bi bi-dash-square-fill"></i></a> 00 <a><i class="bi bi-plus-square-fill"></i></a></div>
 					</c:if>
 					
 					<div class="class1 right"><a class="title">등록일 : </a><a>2023-05-03</a></div>
 					<div class="class-btn">
-			<!-- 만약 페이지가 내 페이지라면, 수정하기/삭제하기 버튼이 나와야 하고, 상대라면, 구매하기 버튼만 나오게 한다. -->
-					
+			
+			<!-- 내 제품이라면, 수정하기/삭제하기 버튼이 나와야 하고, 상대라면, 구매하기 버튼만 나오게 한다. -->
 					<c:if test="${ !empty loginUser && (loginUser.userId == p.productSellerId) }">	<!-- 내 상품을 클릭한 경우. -->
 						<button class="button" onclick="location.href='#"><b>수정하기</b></button>
 						<button class="button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><b>삭제하기</b></button>
 					</c:if>
-					<c:if test="${ empty loginUser || (loginUser.userId != p.productSellerId) }">	<!--  내 상품이 아닌 경우 -->
+					
+			<!-- 로그인을 했고, 내 상품이 아닌 경우 구매가 가능해야 하며, 그 페이지로는 위의 수량과 구매할 상품의 정보를 가져가야 한다.-->
+					<c:if test="${ !empty loginUser && (loginUser.userId != p.productSellerId) }">	
 						<button class="button"
 							onclick="location.href='${ pageContext.servletContext.contextPath }/BuyingPage.market'">
 						<b>구매하기</b></button>
@@ -269,17 +267,8 @@
 							<td>${ p.inquirePostDate }</td>
 						</tr>
 					</c:forEach>
+					
 				</table>
-				
-				
-				<!-- 문의등록 버튼, 이 친구는 로그인을 했을 때만 존재하도록 : 굳이?-->
-<%-- 				<c:if test="#" var="#"> --%>
-<!-- 					<div class="reply re-input"> -->
-<!-- 						<div class="re-id">작성자ID</div> 로그인한 사용자 프로필 주소로 변경하기.. -->
-<!-- 						<div class="re-text"><input class="re-text" type="text" placeholder="내용을 입력하세요."></div> -->
-<!-- 						<div class="re-submit"><button type="submit" class="button2">문의등록</button></div> -->
-<!-- 					</div> -->
-<%-- 				</c:if> --%>
 				
 			</div>
 		</div>		
@@ -341,10 +330,7 @@
 		</div>
 	</div>
 	
-	
-	
-	
-	
+	<!-- 이미지 클릭 위한 스크립트 -->
 	<script>
 		window.onload = function() {
 		    let bigPic = document.querySelector('.img-big');

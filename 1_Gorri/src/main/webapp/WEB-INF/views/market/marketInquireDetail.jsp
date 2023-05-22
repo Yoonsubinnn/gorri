@@ -13,7 +13,7 @@
 			<div class="py-5 text-center">
 			
 			<!-- Inquire인 i를 받습니다.
-				또한 그 i의 댓글인 것도 받습니다 : irList-->
+				i의 댓글인 것도 받습니다 : irList-->
 				<h2>${ i.productNo }의 문의</h2>
 			</div>
 			<tr>
@@ -28,16 +28,6 @@
 			    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
 			  </div>
 			</form>
-			
-			
-			
-<!-- 			<div class="input-group mb-3"> -->
-<!-- 			  <input type="text" class="form-control" placeholder="여기에 댓글 작성" aria-label="여기에 댓글 작성" aria-describedby="button-addon2"> -->
-<!-- 			  <button class="btn btn-outline-secondary" type="button" id="button-addon2">제출하기</button> -->
-<!-- 			</div> -->
-		
-			
-			<%-- 			  onclick="location.href='${contextPath}/Product.market?productId='+${ a.productNo }+'&page='+${pi.currentPage}" --%>
 			
 			<div>
 				<table>
@@ -60,38 +50,6 @@
 				</table>
 			</div>
 			
-			
-
-
-
-
-
-<!-- 			<div style="margin-left: 350px; margin-right: 350px;"> -->
-<%-- 				<form class="needs-validation" action="${ contextPath }/updateForm.bo" method="POST"> --%>
-<%-- 					<input type="hidden" value="${ b.boardId }" name="boardId"> --%>
-<%-- 					<input type="hidden" value="${ page }" name="boardId"> --%>
-<!-- 					<div class="row g-3"> -->
-<!-- 						<div class="col-12"> -->
-<!-- 							<label for="boardTitle" class="form-label">TITLE</label> -->
-<%-- 							<br>${ b.boardTitle } --%>
-<!-- 						</div> -->
-
-<!-- 						<div class="col-12"> -->
-<!-- 							<div class="input-group"> -->
-<!-- 					          <span class="input-group-text">CONTENT</span> -->
-<%-- 					          <textarea class="form-control" rows="10" name="boardContent" style="resize: none;" readonly>${ b.boardContent }</textarea> --%>
-<!-- 					        </div> -->
-<!-- 						</div> -->
-						
-<!-- 						<br><br><br><br><br> -->
-						
-<!-- 						<button class="w-100 btn btn-success btn-lg">UPDATE</button> -->
-<!-- 						<button class="w-100 btn btn-secondary btn-lg" type="button" id="deleteModal">DELETE</button> -->
-<!-- 						<button class="w-100 btn btn-dark btn-lg" type="button"  -->
-<%-- 						onclick="location.href='${contextPath}/list.bo?page='+${page}">GO TO LIST</button> --%>
-<!-- 					</div> -->
-<!-- 				</form> -->
-<!-- 			</div> -->
 		</main>
 
 		<footer class="my-5 pt-5 text-muted text-center text-small"></footer>

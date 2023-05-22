@@ -102,12 +102,6 @@
 <!-- 조각코드 -->
 	<%@include file = "marketTop.jsp" %>
 	<%@include file = "marketSearch.jsp" %>
-	<!-- 검색 조각코드
-		여기서도 어디로 넘어가는지 정해져야 합니다.
-		검색한 이름을 통해서도 넘어가게 합시다. : search로 했고, marketMainPage가 requestparam으로 받게함.
-		얘도 ajax 쓰지 말고 그냥 넘기는걸로 하자.-->
-		
-	
 
 	<!-- 카테고리 조각코드 시작 -->
 	<br>
@@ -121,6 +115,7 @@
 				<td class="categorys"><i class="fa-solid fa-suitcase-rolling"></i><br><a class="category-name">여행</a></td>
 				<td class="categorys"><i class="fa-solid fa-pencil"></i><br><a class="category-name">창작</a></td>
 				<td class="categorys"><i class="fa-solid fa-graduation-cap"></i><br><a class="category-name">자기계발</a></td>
+				<td class="categorys"><i class="bi bi-house-door-fill"></i><br><a class="category-name">전체</a></td>
 				<td class="margin"></td>
 			</tr>
 		</table>
@@ -179,8 +174,7 @@
 		</div>
 	</div>
 
-	<!-- 드롭다운을 위해 회원 순서대로 정렬하려고 하는데, 버튼을 누르면 시간순 정렬, 이름 순 정렬.
-			정렬은 ajax로? -->
+	<!-- 드롭다운 정렬 알고리즘 짜야 함. 버튼을 누르면 시간순 정렬, 이름 순 정렬. -->
 
 	<!-- 게시판-->	
 	<div style="text-align:center; margin:30px; margin-left:auto; margin-right:auto;">
