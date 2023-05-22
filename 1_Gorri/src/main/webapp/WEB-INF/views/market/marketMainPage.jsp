@@ -10,45 +10,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 <title>마켓 메인페이지</title>
-
-		
-		<!-- 결제 테스트 -->
-		
-    <!-- iamport.payment.js -->
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-    <script>
-      var IMP = window.IMP;
-      IMP.init("imp57418820");
- 
-      function requestPay() {
-        IMP.request_pay(
-          {
-        	escrow : false,
-            pg: "kcp.{kakaopay}}",
-            pay_method: "kakaopay",
-            merchant_uid: "57008833-33004",//작성하세요
-            name: "당근 10kg",
-            amount: 1004,					//결제금액. 숫자타입이어야합니다.
-            custim_data: null,
-            tax_free: 0,
-            vat_amount: 0,
-            currency: "KRW",
-            language: "ko",
-            buyer_email: "lee9402lee@naver.com",
-            buyer_name: "갓형주",
-            buyer_tel: "010-3814-7550",
-            buyer_addr: "경기도 부천시 범박동",
-            buyer_postcode: "14777",
-          },
-          function (rsp) {
-            // callback
-            //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
-          }
-        );
-      }
-    </script>
-
-
 <style>
 	.gTitle{text-align:center; text-decoration:underline;}
 /* 	.groupCARD{width:350px; margin-left:auto; margin-right:auto; margin-top:20px; margin-bottom:20px;} */
@@ -141,7 +102,6 @@
 <!-- 조각코드 -->
 	<%@include file = "marketTop.jsp" %>
 	<%@include file = "marketSearch.jsp" %>
-<button onclick="requestPay()">결제하기</button>
 
 	<!-- 카테고리 조각코드 시작 -->
 	<br>

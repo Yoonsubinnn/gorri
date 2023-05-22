@@ -110,7 +110,11 @@ button {
 	
 	<!-- 아임포트 결제 테스트  시작-->
 	<!-- iamport.payment.js -->
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>    
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    
+    
+    
+    
     <!-- jQuery -->
 <script
   type="text/javascript"
@@ -121,54 +125,111 @@ button {
   type="text/javascript"
   src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
 ></script>
- 
-  <script>
-        var IMP = window.IMP; 
-        IMP.init("imp57418820"); 
-      
-        var today = new Date();   
-        var hours = today.getHours(); // 시
-        var minutes = today.getMinutes();  // 분
-        var seconds = today.getSeconds();  // 초
-        var milliseconds = today.getMilliseconds();
-        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+    <script>
+      var IMP = window.IMP;
         
+      function requestPay() {
+    	  IMP.init("imp57418820");	//테스트용 가맹점 식별코드입니다.
+    	  IMP.request_pay(
+    			{ 
+    	  	  	pg: "kakaopay",
+    	      	merchant_uid: "testgorri1004",//가맹점 주문번호. 작성하세요
+    	        name: "밥",
+    	        amount: 5000,					//결제금액. 숫자타입이어야합니다./*document.getElementById로 받아오면 되겠습니다.*/
+    	        buyer_email: "lee9402lee@naver.com",	//이메일. 만약 안받는다면 어캐되는지 확인해야함 
+    	        buyer_name: "밥",
+    	        buyer_tel: "010-3814-7550",
+    	        buyer_addr: "서울특별시 종로구",		
+    	        buyer_postcode: "14777", 
+    	        },
+    	 		function (rsp) {
+    	 		    if (rsp.success) {
+    	 		      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+    	 		      // jQuery로 HTTP 요청
+    	 		      // ajax말고 비동기방식으로 처리하려면?
+//     	 		   	 console.log("성공")
+//     	 		     window.location.href = "${ contextPath }/buyingend.market"
+    	 		    	jQuery.ajax({
+        	 		        url: "${ contextPath }/BuyApprove", 
+        	 		        method: "POST",
+        	 		        headers: { "Content-Type": "application/json" },
+        	 		        data: {
+        	 		          imp_uid: rsp.imp_uid,            // 결제 고유번호 :시퀀스로 작성하기
+        	 		          merchant_uid: rsp.merchant_uid  // 주문번호
+//         	 		          buyer_email : rsp.buyer_email,
+//         	 		          buyer_name : rsp.buyer_name,
+//         	 		          buyer_tel : rsp.buyer_tel,
+//         	 		       	  buyer_addr : rsp.buyer_addr,
+//         	 		          buyer_postcode : rsp.buyer_postcode
+        	 		        }
+        	 		      }).done(function (data) {
+        	 		        // 가맹점 서버 결제 API 성공시 로직
+        	 		        //테스트 위해 찍어보기
+        	 		        console.log("결제 성공했습니다만");
+        	 		        console.log(data);
+        	 		      });
+        	 		    } else {
+        	 		      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+        	 		      console.log(data);
+        	 		    }
+    	 		     
+    	 		     
+    	 		     
+    	 		    
+    	        })
+      }
+    	 		    		  
+    	 		    		  
+    	 		      
+    	 		    
+    	 		    
+//     	 		});
+//       }
 
-        function requestPay() {
-            IMP.request_pay({
-                pg : 'kakaopay',
-                merchant_uid: "TEST1004", 
-                name : '당근 10kg',
-                amount : 1004,
-                buyer_email : 'Iamport@chai.finance',
-                buyer_name : '아임포트 기술지원팀',
-                buyer_tel : '010-1234-5678',
-                buyer_addr : '서울특별시 강남구 삼성동',
-                buyer_postcode : '123-456'
-            }, function (rsp) { // callback
-                if (rsp.success) {
-                    console.log(rsp);
+
+// 		function requestPay() {
+// 			IMP.init("imp57418820");
+//             // IMP.request_pay(param, callback) 결제창 호출
+
+//             IMP.request_pay({ // param
+//                 pg: pg,
+//                 pay_method: payMethod,
+//                 merchant_uid: merchantUid,
+//                 amount: amount,
+//                 name: name,
+//                 buyer_email: buyerEmail,
+//                 buyer_name: buyerName,
+//                 buyer_tel: buyerTel,
+//                 buyer_addr: buyerAddr,
+//                 buyer_postcode: buyerPostcode,
+//                 m_redirect_url: "/order/payment-result"
+
+//             }, function (rsp) { // callback
+//                 if (rsp.success) {
+
 //                     jQuery.ajax({
-//                         url: "{서버의 결제 정보를 받는 가맹점 endpoint}", 
+//                         url: "/api/v1/payment/complete", // 예: https://www.myservice.com/payments/complete
 //                         method: "POST",
 //                         headers: { "Content-Type": "application/json" },
 //                         data: {
-//                           imp_uid: rsp.imp_uid,            // 결제 고유번호
-//                           merchant_uid: rsp.merchant_uid   // 주문번호
+//                             imp_uid: rsp.imp_uid,
+//                             merchant_uid: rsp.merchant_uid
 //                         }
-//                       }).done(function (data) {
-//                         // 가맹점 서버 결제 API 성공시 로직
-//                         console.log("가맹점 서버 결제 완료");
-//                       })
-                    } else {
-                      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
-                      console.log(rsp);
-                    }
-            });
-        }
+//                     }).done(function (data) {
+//                         location.replace('/order/payment-result');
+//                     })
+//                 } else {
+//                     alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+//                 }
+//             });
+//         }
+
+		
+	
+       
+      
     </script>
- 
- 
+	
 	<button onclick="requestPay()">결제하기</button>
 	
 	

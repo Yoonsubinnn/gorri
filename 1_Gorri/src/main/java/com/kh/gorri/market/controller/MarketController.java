@@ -37,7 +37,7 @@ public class MarketController {
 	@Autowired
 	private MarketService mService;
 	
-
+	
 	/**
 	 * 마켓 메인페이지로 넘어가는 메소드
 	 * marketMainPage.jsp로 이동
@@ -338,6 +338,12 @@ public class MarketController {
 	  return mv;
 	}
 	
+	//결제를 위해 테스트하는 코드
+	@RequestMapping("buyingend.market")
+	public String end() {
+		System.out.println("구매완료 정상가동");
+		return "marketBuyingEnd";
+	}
 	
 	
 	
