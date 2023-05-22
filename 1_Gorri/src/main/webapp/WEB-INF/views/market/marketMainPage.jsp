@@ -132,8 +132,14 @@
 //   			console.log("categories");
 //   			console.log("contextPath");
   			 categories.forEach(function(category) {
+  				 
+  				 let text = this.innerText.trim();
+  				 if(text == "전체") {
+  					 text = null;
+  					 /*여기서 로직상의 오류 생길 수 있음. 전체를 누르면 category를 비어있는것으로 보내려 하는 로직임(그렇게 하면 쿼리상에서 전체를 가져올 수 있음)*/
+  				 }
   			      category.addEventListener("click", function() {
-  			        let url = "/MainPage.market?category=" + encodeURIComponent(this.innerText.trim());
+  			        let url = "/MainPage.market?category=" + encodeURIComponent(text);
   			        window.location.href = contextPath + url;
   			      });
   			 });
