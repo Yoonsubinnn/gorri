@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -339,9 +340,19 @@ public class MarketController {
 	}
 	
 	//결제를 위해 테스트하는 코드
-	@RequestMapping("buyingend.market")
-	public String end() {
+	@PostMapping("BuyingEnd.market")
+	public String buyingEnd(@RequestParam Map<String, Object> map) {
+										//json을 
+		
+		
+		
+		//그냥  ajax 말고 동기방식으로 url 넘기게 합시다. 데이터 다 받아서.
 		System.out.println("구매완료 정상가동");
+		
+		
+		
+		
+		
 		return "marketBuyingEnd";
 	}
 	

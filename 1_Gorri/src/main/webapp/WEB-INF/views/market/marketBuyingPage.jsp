@@ -137,9 +137,11 @@ button {
         function requestPay() {
             IMP.request_pay({
                 pg : 'kakaopay',
-                merchant_uid: "TEST1004", 
-                name : '당근 10kg',
-                amount : 1004,
+                merchant_uid: "TEST0004", //꼭 매번 바꾸고 새로고침 하고 하세요. 안그러면 계속 결제오류남.
+                //주분번호인 merchant_uid는 고유키이기 때문에 안바꾸면 존나 에러납니다.
+                //꼭 따로 받아서 저장하고, 매번 테스트시 바꿔주세요
+                name : '당근 10kg',											
+                amount : 1004,					
                 buyer_email : 'Iamport@chai.finance',
                 buyer_name : '아임포트 기술지원팀',
                 buyer_tel : '010-1234-5678',
@@ -147,19 +149,22 @@ button {
                 buyer_postcode : '123-456'
             }, function (rsp) { // callback
                 if (rsp.success) {
+                	var msg = "결제 성공";
+                	alert(msg);
                     console.log(rsp);
-//                     jQuery.ajax({
-//                         url: "{서버의 결제 정보를 받는 가맹점 endpoint}", 
-//                         method: "POST",
-//                         headers: { "Content-Type": "application/json" },
-//                         data: {
-//                           imp_uid: rsp.imp_uid,            // 결제 고유번호
-//                           merchant_uid: rsp.merchant_uid   // 주문번호
-//                         }
-//                       }).done(function (data) {
-//                         // 가맹점 서버 결제 API 성공시 로직
-//                         console.log("가맹점 서버 결제 완료");
-//                       })
+//                     location.href = "${contextPath}/BuyingEnd.market"
+                    jQuery.ajax({
+                        url: "${contextPath}/BuyingEnd.market", 
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        data: {
+                          imp_uid: rsp.imp_uid,            // 결제 고유번호
+                          merchant_uid: rsp.merchant_uid   // 주문번호
+                        }
+                      }).done(function (data) {
+                        // 가맹점 서버 결제 API 성공시 로직
+                        console.log("가맹점 서버 결제 완료");@re
+                      })
                     } else {
                       alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
                       console.log(rsp);
