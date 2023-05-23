@@ -163,7 +163,6 @@
 				<!-- 
 				controller에서 다음을 받아옵니다.'
 				p : 상품 객체
-				page : 이전의 pagenation
 				seller : 판매자 객체
 				productInq : 상품 문의
 				productReview : 상품 리뷰

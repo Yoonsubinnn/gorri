@@ -231,19 +231,21 @@ public class MarketController {
 	 * @return
 	 */
 	@RequestMapping("Product.market")
-	public ModelAndView marketProduct(HttpSession session,
-											ModelAndView mv,
-											@RequestParam("productId") int productId,	//상품번호(productId)
-//											@RequestParam("writer") String writer, 
-											@RequestParam(value = "page", required = false) Integer page) {
+	public ModelAndView marketProduct(
+//										HttpSession session,
+										ModelAndView mv,
+										@RequestParam("productId") int productId	//상품번호(productId)
+	//									@RequestParam("writer") String writer, 
+	//									@RequestParam(value = "page", required = false) Integer page
+										) {
 		
 		
 //		Member m = (Member)session.getAttribute("loginUser");	//지금 로그인한 놈 객체 만드는 함수
 		//지금 당장은 필요없지만, 나주엥 쓰일스도 있어서 만들어놓음.
 		
-		if(page == null) {
-			page = 1;
-		}
+//		if(page == null) {
+//			page = 1;
+//		}
 		Product p = mService.getProductInfo(productId);
 		System.out.println("p:"+ p);
 		Member seller = mService.getSellerInfo(p.getProductSellerId());	//판매자 정보(아이디)를 통해 멤버객체를 생성하는, 판매자 정보를 가져오는  함수
@@ -258,7 +260,7 @@ public class MarketController {
 		
 		
 		mv.addObject("p", p);
-		mv.addObject("page", page);
+//		mv.addObject("page", page);
 		mv.addObject("seller", seller);
 		mv.addObject("productInq", productInq);
 		mv.addObject("productReview", productReview);
