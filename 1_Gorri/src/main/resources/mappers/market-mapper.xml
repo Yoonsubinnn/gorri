@@ -78,6 +78,14 @@
 	</insert>
 	
 	
+	<!-- 주문하면집어넣을것 -->
+	<insert id="purchase">
+		insert into pay
+		values(#{originalId}, #{paymentNo}, #{productNo}, #{buyerId}, #{buyerName}, #{buyerPhone}, 
+				#{address}, #{amount}, #{paymentAmount}, #{require}, sysdate)
+	</insert>
+	
+	
 
 		<!--resultMaps -->
 	<!-- Product. -->
@@ -137,13 +145,21 @@
 	
 	<!-- Pay -->
 	<resultMap type="Pay" id="payResultSet">
-		<id column="PAY_NO" property="paymentNo;"/>
-		<result column="PAYDATE" property="paymentDate;"/>
-		<result column="AMOUNT" property="quantity;"/>
-		<result column="PAYMENTAMOUNT" property="paymentAmount;"/>
-		<result column="PRODUCT_NO" property="productNo;"/>
-		<result column="BUYER_ID" property="buyerId;"/>
+		<id column="ORIGINAL_ID" property="originalId"/>
+		<result column="PAY_NO" property="paymentNo"/>
+		<result column="PRODUCT_NO" property="productNo"/>
+		<result column="BUYER_ID" property="buyerId"/>
+		<result column="BUYER_NAME" property="buyerName"/>
+		<result column="BUYER_PHONE" property="buyerPhone"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="AMOUNT" property="amount"/>
+		<result column="PAYMENTAMOUNT" property="paymentAmount"/>
+		<result column="REQUIRE" property="require"/>
+		<result column="PAYDATE" property="payDate"/>
 	</resultMap>
+	
+	
+	
 	
 	<!-- InquireReply -->
 	<resultMap type="InquireReply" id="inquireReplyResultSet">

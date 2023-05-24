@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -310,11 +311,19 @@ public class MarketController {
 	 * 구매창으로 넘어가게 함. 
 	 */
 	@RequestMapping("BuyingPage.market")
-	public String marketBuyingPage() {
-		//TODO구현해야합니다.
-		System.out.println("marketBuyingPage");
+	public ModelAndView marketBuyingPage(@RequestParam("productId") int productId,
+											HttpSession session,
+											ModelAndView mv
+											) {
+		System.out.println("marketBuyingPage 실행");
+		//상품정보 가져와서 넘겨라. 멤버정보도 javascript에 필요하므로 넘긴다.
+		Product p = mService.getProductInfo(productId);
+		Member m = (Member)session.getAttribute("loginUser");
+		mv.addObject("p", p);
+		mv.addObject("m", m);
+		mv.setViewName("marketBuyingPage");
+		return mv;
 		
-		return "marketBuyingPage";
 	}
 	
 	/**
@@ -342,21 +351,19 @@ public class MarketController {
 	}
 	
 	//결제를 위해 테스트하는 코드
-	@PostMapping("BuyingEnd.market")
-	public String buyingEnd(@RequestParam Map<String, Object> map) {
-										//json을 
-		
-		
-		
-		//그냥  ajax 말고 동기방식으로 url 넘기게 합시다. 데이터 다 받아서.
-		System.out.println("구매완료 정상가동");
-		
-		
-		
-		
-		
-		return "marketBuyingEnd";
-	}
+//	@PostMapping("BuyingEnd.market")
+//	public String buyingEnd(@RequestParam("data") Object data ) {
+//		System.out.println("구매완료 실행");
+//		int paymentNo = (String)map.get("imp_uid"); 			//결제 고유번호
+//		int quantity = (int)map.get("merchant_uid");		//수정해야
+//		String name = (String)map.get("buyer_name");		//구매자 이름
+//		int tel = (int)map.get("buyer_tel");				//구매자 전번
+//		int paymentNo = (int)map.get("imp_uid");
+//		int paymentNo = (int)map.get("imp_uid");
+//		System.out.println();
+//		System.out.println("구매완료 정상가동");
+//		return "marketBuyingEnd";
+//	}
 	
 	
 	

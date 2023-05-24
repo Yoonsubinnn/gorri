@@ -207,7 +207,7 @@
 			<!-- 로그인을 했고, 내 상품이 아닌 경우 구매가 가능해야 하며, 그 페이지로는 위의 수량과 구매할 상품의 정보를 가져가야 한다.-->
 					<c:if test="${ !empty loginUser && (loginUser.userId != p.productSellerId) }">	
 						<button class="button"
-							onclick="location.href='${ pageContext.servletContext.contextPath }/BuyingPage.market'">
+							onclick="location.href='${ pageContext.servletContext.contextPath }/BuyingPage.market?productId=${ p.productNo }'">
 						<b>구매하기</b></button>
 <!-- 						<button class="button like" onclick="location.href='#"><i class="bi bi-heart-fill"></i></button> -->
 							<!-- 좋아요 버튼은 빠짐 -->

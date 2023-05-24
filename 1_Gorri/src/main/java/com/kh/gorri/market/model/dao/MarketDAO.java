@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.gorri.common.model.vo.PageInfo;
 import com.kh.gorri.market.model.vo.Inquire;
 import com.kh.gorri.market.model.vo.InquireReply;
+import com.kh.gorri.market.model.vo.Pay;
 import com.kh.gorri.market.model.vo.Product;
 import com.kh.gorri.market.model.vo.Review;
 import com.kh.gorri.member.model.vo.Member;
@@ -133,6 +134,23 @@ public class MarketDAO {
 		parameterMap.put("productNo", productNo);
 		parameterMap.put("inquireNo", inquireNo);
 		return sqlSession.insert("marketMapper.addReply", parameterMap);
+	}
+
+	public int purchase(SqlSessionTemplate sqlSession, Pay pay) {
+		Map<String, Object> parameterMap = new HashMap<>();
+		parameterMap.put("originalId", pay.getOriginalId());
+		parameterMap.put("paymentNo", pay.getPaymentNo());
+		parameterMap.put("productNo", pay.getProductNo());
+		parameterMap.put("buyerId", pay.getBuyerId());
+		parameterMap.put("buyerName", pay.getBuyerName());
+		parameterMap.put("buyerPhone", pay.getBuyerPhone());
+		parameterMap.put("address", pay.getAddress());
+		parameterMap.put("amount", pay.getAmount());
+		parameterMap.put("paymentAmount", pay.getPaymentAmount());
+		parameterMap.put("require", pay.getRequire());
+		parameterMap.put("payDate", pay.getPayDate());
+
+		return sqlSession.insert("marketMapper.purchase", parameterMap);
 	}
 
 }

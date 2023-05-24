@@ -11,6 +11,7 @@ import com.kh.gorri.group.model.vo.Attachment;
 import com.kh.gorri.market.model.dao.MarketDAO;
 import com.kh.gorri.market.model.vo.Inquire;
 import com.kh.gorri.market.model.vo.InquireReply;
+import com.kh.gorri.market.model.vo.Pay;
 import com.kh.gorri.market.model.vo.Product;
 import com.kh.gorri.market.model.vo.Review;
 import com.kh.gorri.member.model.vo.Member;
@@ -88,6 +89,12 @@ public class MarketServiceImpl implements MarketService {
 		@Override
 		public int addReply(String comment, Member m, String productNo, String inquireNo) {
 			return mDAO.addReply(sqlSession, comment, m, productNo, inquireNo);
+		}
+
+		@Override
+		public int purchase(Pay pay) {
+			// TODO Auto-generated method stub
+			return mDAO.purchase(sqlSession, pay);
 		}
 	
 }

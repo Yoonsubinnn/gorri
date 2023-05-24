@@ -121,49 +121,91 @@ button {
   type="text/javascript"
   src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
 ></script>
+
+	<!-- 주문번호 위해 랜덤한 6문자 해시를 만들기 위한 함수. --> 
+ <script type="text/javascript">
+	 let hashes = new Set();
+	
+	 function generateUniqueDigits() {
+		    let digits = '0123456789';
+		    let result = '';
+		    for (let i = 0; i < 6; i++) {
+		        let randomIndex = Math.floor(Math.random() * digits.length);
+		        result += digits[randomIndex];
+		        digits = digits.slice(0, randomIndex) + digits.slice(randomIndex + 1);
+		    }
+		    return result;
+	}
+	 
+	let hash6 = generateUniqueDigits();
+ </script>
+ 
+ 
  
   <script>
         var IMP = window.IMP; 
-        IMP.init("imp57418820"); 
+        IMP.init("imp57418820"); 				//이거 바꾸면댐
       
-        var today = new Date();   
-        var hours = today.getHours(); // 시
-        var minutes = today.getMinutes();  // 분
-        var seconds = today.getSeconds();  // 초
-        var milliseconds = today.getMilliseconds();
-        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+//         var today = new Date();   
+//         var hours = today.getHours(); // 시
+//         var minutes = today.getMinutes();  // 분
+//         var seconds = today.getSeconds();  // 초
+//         var milliseconds = today.getMilliseconds();
+//         var makeMerchantUid = hours +  minutes + seconds + milliseconds;
         
 
         function requestPay() {
             IMP.request_pay({
                 pg : 'kakaopay',
-                merchant_uid: "TEST0004", //꼭 매번 바꾸고 새로고침 하고 하세요. 안그러면 계속 결제오류남.
+//                 merchant_uid: "TEST00423", 
+                merchant_uid: hash6,		//랜덤해시주문번호 
+                //꼭 매번 바꾸고 새로고침 하고 하세요. 안그러면 계속 결제오류남.
                 //주분번호인 merchant_uid는 고유키이기 때문에 안바꾸면 존나 에러납니다.
                 //꼭 따로 받아서 저장하고, 매번 테스트시 바꿔주세요
-                name : '당근 10kg',											
-                amount : 1004,					
-                buyer_email : 'Iamport@chai.finance',
-                buyer_name : '아임포트 기술지원팀',
-                buyer_tel : '010-1234-5678',
-                buyer_addr : '서울특별시 강남구 삼성동',
-                buyer_postcode : '123-456'
+                
+                
+                
+                
+                
+//                 name : '당근 10kg',											
+                name : '${ p.productName }',											
+//                 amount : 1004,					
+                amount : ${ p.productPrice } * document.getElementById('quantity').innerText,					
+//                 buyer_email : 'Iamport@chai.finance',
+//                 buyer_name : '아임포트 기술지원팀',
+                buyer_name : document.getElementById('name').value,	//이름은 수정하면 곤란하므로 html에서는 readonly로 보내온 m을 바탕으로 정한다.
+//                 buyer_tel : '010-1234-5678',
+                buyer_tel : document.getElementById('phone').value,	
+//                 buyer_addr : '서울특별시 강남구 삼성동',
+                buyer_addr : document.getElementById('address').value + ", " + document.getElementById('details').value,	
+//                 buyer_postcode : '123-456'
             }, function (rsp) { // callback
                 if (rsp.success) {
                 	var msg = "결제 성공";
                 	alert(msg);
-                    console.log(rsp);
+                    console.log(rsp);	
 //                     location.href = "${contextPath}/BuyingEnd.market"
                     jQuery.ajax({
                         url: "${contextPath}/BuyingEnd.market", 
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        data: {
-                          imp_uid: rsp.imp_uid,            // 결제 고유번호
-                          merchant_uid: rsp.merchant_uid   // 주문번호
-                        }
+                        data: JSON.stringify({
+                        	originalId: rsp.imp_uid,            
+                        	paymentNo: rsp.merchant_uid,  
+                        	productNo: ${ p.productNo },
+                        	buyerId : "${ m.userId }",
+                        	buyerName: rsp.buyer_name,
+                        	buyerPhone : rsp.buyer_tel,
+                        	address : rsp.buyer_addr,
+                        	amount : document.getElementById('quantity').innerText,
+                        	paymentAmount : rsp.paid_amount,
+                        	require : document.getElementById('request').value
+                        })
                       }).done(function (data) {
                         // 가맹점 서버 결제 API 성공시 로직
-                        console.log("가맹점 서버 결제 완료");@re
+                        console.log("가맹점 서버 결제 완료");
+                        console.log(data);
+                        location.href = 'marketBuyingEnd.market';
                       })
                     } else {
                       alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
@@ -218,7 +260,7 @@ button {
   	<br>
   		<h4>배송지 정보</h4>
   		<div class="info_input">
-			  <input type="text" id="name" class="info" placeholder="이름 |" style="width: 350px;">
+			  <input type="text" id="name" class="info" placeholder="이름 |" style="width: 350px;" value="${ m.userName }" readonly="readonly">
 			  <input type="text" id="phone" class="info" placeholder="핸드폰 번호를 입력하세요" style="width: 350px;">
 			  <input type="text" id="address" class="info" placeholder="주소 |" style="width: 690px;">
 			  <input type="text" id="details" class="info" placeholder="상세 주소를 입력하세요" style="width: 690px;">
